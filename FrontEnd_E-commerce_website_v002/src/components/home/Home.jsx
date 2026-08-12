@@ -31,20 +31,65 @@ const Home = () => {
     <>
     
       <Banner/>
-      { !loading && products && products.length > 0 && <MidSlide products={products} title="Deal of the Day" timer={true}/> }
+      {/* { !loading && products && products.length > 0 && <MidSlide 
+                                                          title="Deal of the Day"
+                                                          section="Deal-of-the-day" 
+                                                          timer={true}
+                                                       /> 
+      } */}
+       <MidSlide 
+                                                          title="Deal of the Day"
+                                                          section="deal-of-the-day" 
+                                                          timer={true}
+                                                       /> 
+    
+      <MidSection/>
+       <Slide 
+                                                          title="Trending Offers"
+                                                          section="Trending-Offers" 
+                                                          timer={false}
+                                                        /> 
       
-      { !loading && products && products.length > 0 && <Slide products={products} title="Trending Offers" timer={false}/> }
-      { !loading && products && products.length > 0 && <Slide products={products} title="Top Selection" timer={false}/> }
+
+      <Slide 
+                                                          title="Top Selection" 
+                                                          section="Top Selection"
+                                                          timer={false}
+                                                        /> 
+     
 
       
-      <MidSection/>
       
-      { !loading && products && products.length > 0 && <Slide products={products} title="Top's Deals on Accessories" timer={false}/> }
-      { !loading && products && products.length > 0 && <Slide products={products} title="Discounts for You" timer={false} /> }
-      { !loading && products && products.length > 0 && <Slide products={products} title="Recommended Items" timer={false}/> }
-      { !loading && products && products.length > 0 && <Slide products={products} title="Suggested for You" timer={false}/> }
       
-      { !loading && products && products.length > 0 && <Slide products={products} title="Season's top picks" timer={false}/> }
+       <Slide  
+                                                          title="Top's Deals on Accessories"
+                                                          section="Top-Deals-On-Accessories" 
+                                                          timer={false}
+                                                        /> 
+      
+       <Slide 
+                                                          title="Discounts for You" 
+                                                          section="Discounts-for-you"
+                                                          timer={false} 
+                                                        /> 
+      
+      <Slide 
+                                                          title="Recommended Items"
+                                                          section="Recommended-items" 
+                                                          timer={false}
+                                                        /> 
+       
+       <Slide 
+                                                          title="Suggested for You" 
+                                                          section="Suggesting-items"
+                                                          timer={false}/> 
+      
+      
+       <Slide  
+                                                          title="Season's top picks" 
+                                                          section="Season's-top-picks"
+                                                          timer={false}/> 
+      
       
 
     </>

@@ -14,9 +14,10 @@ import Home from './components/home/Home'
 import DetailView from './components/details/DetailView';
 import Cart from './components/cart/Cart';
 import CategoryPage from './components/category/CategoryPage';
-
+import SectionsPage from './components/sections/SectionsPage';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 
 
 
@@ -69,6 +70,8 @@ const App = () => {
             <Route path='/product/:id' element={<DetailView/>} />
             <Route path='/cart' element={<Cart/>} />
             <Route path='/category/:category' element={<CategoryPage/>}/>
+            <Route path='/sections/:section' element={<SectionsPage/>}/>
+     
 
             {/*  */}
             <Route path="/success" element={<h2>Payment Successful! </h2>} />

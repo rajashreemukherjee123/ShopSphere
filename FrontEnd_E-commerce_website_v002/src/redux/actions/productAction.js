@@ -54,3 +54,20 @@ export const getProductCategory = (category)=> async(dispatch)=>{
         dispatch ({type: actionTypes.GET_PRODUCT_CATEGORY_FAIL, payload: err.message});
     }
 }
+
+
+export const  getProductSection = (section)=> async(dispatch)=>{
+    try{
+        dispatch({ type: actionTypes.GET_PRODUCT_SECTION_REQUEST });
+
+        const { data } = await axios.get(`${URL}/products/sections/${section}`);
+
+        dispatch ({ type: actionTypes.GET_PRODUCT_SECTION_SUCCESS, 
+                    payload: data,
+                    section: section 
+                });
+
+    }catch(err){
+        dispatch ({ type: actionTypes.GET_PRODUCT_SECTION_FAIL, payload: err.message });
+    }
+}

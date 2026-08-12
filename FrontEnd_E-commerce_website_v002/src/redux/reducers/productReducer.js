@@ -47,3 +47,28 @@ export const getProductCategoryReduces = (state = {products:[], loading:false, e
             return state
     }
 }
+
+
+export const getProductSectionReducer = (state = {section: {}, loading:false, error:null }, action)=>{
+    switch(action.type) {
+        case actionType.GET_PRODUCT_SECTION_REQUEST:
+            return { ...state, loading:true, error:null }
+
+        case actionType.GET_PRODUCT_SECTION_SUCCESS:
+            return { ...state, 
+                    loading:false, 
+                    section: {
+                        ...state.section,
+                        [action.section]: action.payload
+                    },
+                    error:null }
+
+        case actionType.GET_PRODUCT_SECTION_FAIL:
+            return { ...state, loading:false, error:action.payload}
+
+        case actionType.GET_PRODUCT_SECTION_RESET:
+            return { section: {}, loading: false, error: null }
+        default:
+            return state
+    }
+}

@@ -3,8 +3,8 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import {thunk} from 'redux-thunk';
 import { composeWithDevTools } from "redux-devtools-extension";
 
-import { getProductsReducer, getProductDetailsReducer, getProductCategoryReduces } from "./reducers/productReducer";
-import { getProductDetails, getProductCategory } from "./actions/productAction";
+import { getProductsReducer, getProductDetailsReducer, getProductCategoryReduces, getProductSectionReducer } from "./reducers/productReducer";
+import { getProductDetails, getProductCategory, getProductSection } from "./actions/productAction";
 
 import { cartReducer } from './reducers/cartReducer';
 import { userLoginReducer } from "./reducers/userReducer";
@@ -15,6 +15,7 @@ const reducer = combineReducers({
     getProducts: getProductsReducer,
     getProductDetails: getProductDetailsReducer,
     getProductCategory: getProductCategoryReduces,
+    getProductSection: getProductSectionReducer,
     cart: cartReducer
 });
 

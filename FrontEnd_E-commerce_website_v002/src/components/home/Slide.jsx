@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import CarouselLib from "react-multi-carousel"
 import "react-multi-carousel/lib/styles.css"
 
 import Countdown from 'react-countdown';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 
 import {Box, Button, Divider, styled, Typography} from "@mui/material"
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductSection } from '../../redux/actions/productAction';
 
 const Carousel = CarouselLib.default || CarouselLib
 
@@ -60,8 +62,35 @@ const Image = styled('img')({
     height: 150
 })
 
-const Slide = ({ products, title, timer }) => {
-    if (!products || products.length === 0) return null;
+const Slide = ({ title, timer, section }) => {
+
+    const dispatch = useDispatch();
+    const navigat = useNavigate();
+
+    const { section: sectionData ,loading, error } = useSelector(
+        state => state.getProductSection
+    );
+
+    const products = sectionData[section] || [];
+
+    useEffect(()=>{
+        if(section){
+            dispatch(getProductSection(section));
+        }
+    },[dispatch, section]);
+
+    // if(loading){
+    //     return <Typography>Loading...</Typography>
+    // }
+
+    if(error){
+        return <Typography color='error'>{error}</Typography>
+    }
+
+
+    if (!products || products.length === 0){
+        return null;
+    } 
     const timerURL = 'https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/timer_a73398.svg';
 
     const renderer = ({ hours, minutes, seconds })=>{
@@ -80,7 +109,9 @@ const Slide = ({ products, title, timer }) => {
                         </Timer>
                 }
                 
-                <ViewAllButton variant='contained' color='primary'>View All</ViewAllButton>
+                
+                <ViewAllButton variant='contained' color='primary' onClick={()=> navigat(`/sections/${section}`)}>View All</ViewAllButton>
+                
             </Deal>
             <Divider/>
             <Carousel   responsive={responsive}
