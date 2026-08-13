@@ -17,6 +17,6 @@ const productSchema = new mongoose.Schema({
     tagline: String,
     sections: [String] 
 
-});
+},{versionKey:false});
 
 module.exports = mongoose.model("product",productSchema);

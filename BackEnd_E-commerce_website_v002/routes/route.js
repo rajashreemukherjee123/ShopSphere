@@ -6,7 +6,8 @@ const { addToCart, removeFromCart, updateQuantity, getCartDetails, clearCart } =
 
 const { createOrder, verifyPayment } = require("../controller/payment-controller");
 
-const checkAuth = require('../middleware/auth') 
+const checkAuth = require('../middleware/auth'); 
+const {addToWishList, getWishList, removeWishList} = require("../controller/wishList-controller");
 
 
 const router = express.Router();
@@ -43,9 +44,17 @@ router.put("/cart/update",checkAuth, updateQuantity);
 router.get("/cart/get", checkAuth, getCartDetails);
 
 
-// Cart clear
+//---------------------------------------------------------- Cart clear ----------------------------------------------------------------
 router.post("/cart/clear", checkAuth, clearCart);
 
+//---------------------------------------------------------- add to wishList ----------------------------------------------------------------
+router.post("/wishList/add", checkAuth, addToWishList);
+
+//---------------------------------------------------------- Show wishList ----------------------------------------------------------------
+router.get("/wishList/show", checkAuth, getWishList);
+
+//---------------------------------------------------------- Remove product from wishList ----------------------------------------------------------------
+router.delete("/wishList/remove/:pid", checkAuth, removeWishList);
 
 
 

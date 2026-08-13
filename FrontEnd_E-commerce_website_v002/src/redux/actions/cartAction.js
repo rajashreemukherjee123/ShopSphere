@@ -15,6 +15,7 @@ const getAuthConfig = () => {
     };
 };
 
+
 // Add to Cart
 export const addToCartAction = (productId, quantity) => async (dispatch) => {
     try {
