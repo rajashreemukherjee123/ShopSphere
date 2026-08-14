@@ -45,6 +45,8 @@ const getWishList = async(req,res)=>{
         let wishListObj = await wishList.findOne({ userId: req.user.user_id })
         if(wishListObj){
             res.status(200).json({wishListObj});
+        }else{
+            res.status(200).json({wishListObj: null});
         }
     }catch(err){
         res.status(500).json({message: err.message});

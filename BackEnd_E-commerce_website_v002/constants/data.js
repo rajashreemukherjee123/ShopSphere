@@ -166,9 +166,9 @@ const products = [
   {
     id: "Product8",
     category: "mobile",
-    url: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500",
+    url: "https://images.unsplash.com/photo-1581795669633-91ef7c9699a8?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1000",
+      "https://images.unsplash.com/photo-1581795669633-91ef7c9699a8?w=1000",
     title: {
       shortTitle: "iPhone 15",
       longTitle: "Apple iPhone 15 (128 GB) - Black",
@@ -190,9 +190,9 @@ const products = [
   {
     id: "Product9",
     category: "mobile",
-    url: "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=500",
+    url: "https://images.unsplash.com/photo-1610792516820-2bff50c652a2?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=1000",
+      "https://images.unsplash.com/photo-1610792516820-2bff50c652a2?w=1000",
     title: {
       shortTitle: "Galaxy S24",
       longTitle: "Samsung Galaxy S24 5G (256 GB) - Phantom Black",
@@ -323,9 +323,9 @@ const products = [
   {
     id: "Product16",
     category: "mobile",
-    url: "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=500",
+    url: "https://mc.bajajfinserv.in/media/catalog/product/4/2/421542o_base.jpeg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=1000",
+      "https://mc.bajajfinserv.in/media/catalog/product/4/2/421542o_base.jpeg?w=1000",
     title: {
       shortTitle: "OnePlus 12",
       longTitle: "OnePlus 12 5G (256 GB) - Flowy Emerald",
@@ -342,9 +342,9 @@ const products = [
   {
     id: "Product17",
     category: "mobile",
-    url: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500",
+    url: "https://images.unsplash.com/photo-1724341039339-036842055cae?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=1000",
+      "https://images.unsplash.com/photo-1724341039339-036842055cae?w=1000",
     title: {
       shortTitle: "Pixel 9",
       longTitle: "Google Pixel 9 (128 GB) - Obsidian",
