@@ -8,15 +8,20 @@ import { getProductDetails, getProductCategory, getProductSection } from "./acti
 
 import { cartReducer } from './reducers/cartReducer';
 import { userLoginReducer } from "./reducers/userReducer";
-
+import { wishListReducer } from "./reducers/wishListReducer"
 
 const reducer = combineReducers({
+
     userLogin: userLoginReducer,
+
     getProducts: getProductsReducer,
     getProductDetails: getProductDetailsReducer,
     getProductCategory: getProductCategoryReduces,
     getProductSection: getProductSectionReducer,
-    cart: cartReducer
+
+    cart: cartReducer,
+
+    wishList: wishListReducer
 });
 
 const tokenFromStorage = localStorage.getItem("token");

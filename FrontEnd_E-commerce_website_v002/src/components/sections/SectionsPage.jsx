@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useParams,  useNavigate } from 'react-router-dom';
 import {getProductSection} from '../../redux/actions/productAction'
 import {addToCartAction} from '../../redux/actions/cartAction'
+import WishlistButton from '../button/WishlistButton';
 
 
 const SectionsPage = () => {
@@ -51,6 +52,7 @@ const SectionsPage = () => {
                 <Card key={item._id}
                   onClick={()=> navigate(`/product/${item.id}`)}
                   sx={{
+                    position: "relative",
                     height: "100%",
                     display: 'flex', 
                     flexDirection: 'column',
@@ -62,6 +64,9 @@ const SectionsPage = () => {
                       transform: "translateY(-4px)"
                     }
                 }}>
+                  <WishlistButton productId={item._id}/>
+
+
                   <CardMedia component="img" image={item.url} alt={item.title?.shortTitle} sx={{
                     height: "200px",
                     width: '100%',
@@ -69,6 +74,8 @@ const SectionsPage = () => {
                     backgroundColor: "#fff"
                     // padding: 1
                   }} />
+
+                  
     
     
                   <CardContent sx={{ 

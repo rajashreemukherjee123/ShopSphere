@@ -6,6 +6,8 @@ import FlashOnIcon from '@mui/icons-material/FlashOn';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
+import WishlistButton from '../button/WishlistButton';
+
 import { addToCartAction } from '../../redux/actions/cartAction';
 import useRazorpay from '../../hooks/useRazorpay'; // centralized hook
 
@@ -34,7 +36,7 @@ const ActionItem = ({ product }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [quantity] = useState(1);
-    const { initiatePayment } = useRazorpay(); // hook use korchi
+    const { initiatePayment } = useRazorpay(); // use hook
 
     const addItemToCart = async () => {
         if (product._id) {
@@ -60,14 +62,16 @@ const ActionItem = ({ product }) => {
 
     return (
         <LeftContainer>
-            <Box style={{ padding: '15px 20px', border: '1px solid #f0f0f0', width: '90%', marginBottom: 10 }}>
+            <Box sx={{ padding: '15px 20px', border: '1px solid #f0f0f0', width: '90%', marginBottom: 10, position: 'relative' }}>
                 <Image src={product.detailUrl} alt='product' style={{ width: '100%', padding: 0, border: 'none' }} />
+                <WishlistButton productId={product._id} sx={{right: 30, top: 30}}/>
             </Box>
 
             <StyledButton
                 variant='contained'
                 onClick={addItemToCart}
-                sx={{ marginRight: "4%", bgcolor: '#ff961f', '&:hover': { bgcolor: '#db7806' }, textTransform: 'none' }}
+                
+                sx={{ bgcolor: '#8A33FD', '&:hover': { bgcolor: '#7226d4' }, textTransform: 'none' }}
             >
                 <ShoppingCartIcon sx={{ mr: 1 }} />
                 Add to Cart
@@ -76,7 +80,7 @@ const ActionItem = ({ product }) => {
             <StyledButton
                 variant='contained'
                 onClick={buyNow}
-                sx={{ bgcolor: '#8A33FD', '&:hover': { bgcolor: '#7226d4' }, textTransform: 'none' }}
+                sx={{ marginRight: "4%", bgcolor: '#ff961f', '&:hover': { bgcolor: '#db7806' }, textTransform: 'none' }}
             >
                 <FlashOnIcon sx={{ mr: 1 }} />
                 Buy Now

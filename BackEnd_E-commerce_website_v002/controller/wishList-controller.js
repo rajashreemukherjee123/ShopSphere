@@ -42,7 +42,9 @@ const addToWishList = async(req,res)=>{
 // --------------------------- Show Wish-List ---------------------------------
 const getWishList = async(req,res)=>{
     try{
-        let wishListObj = await wishList.findOne({ userId: req.user.user_id })
+        let wishListObj = await wishList.findOne({ 
+            userId: req.user.user_id 
+        }).populate("items.productId")
         if(wishListObj){
             res.status(200).json({wishListObj});
         }else{

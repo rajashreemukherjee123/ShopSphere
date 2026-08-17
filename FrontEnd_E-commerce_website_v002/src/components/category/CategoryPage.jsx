@@ -1,5 +1,4 @@
 import React from 'react'
-// import Card from '@mui/material/Card';
 import { Box,Card,CardMedia,CardContent,Typography,Button } from '@mui/material'; 
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
@@ -7,6 +6,9 @@ import {useEffect} from 'react'
 import { getProductCategory } from "../../redux/actions/productAction";
 import { addToCartAction } from "../../redux/actions/cartAction";
 import { useNavigate } from "react-router-dom";
+
+
+import WishlistButton from "../button/WishlistButton"
 
 
 const CategoryPage = () => {
@@ -17,6 +19,7 @@ const CategoryPage = () => {
 
   const navigate = useNavigate()
 
+  // ---------------- Category products ----------------
   const { products, loading, error } = useSelector(
     (state)=> state.getProductCategory
   );
@@ -24,6 +27,10 @@ const CategoryPage = () => {
   useEffect(()=>{
     dispatch(getProductCategory(category))
   },[dispatch,category]) 
+
+
+  
+
 
   return (
     <Box
@@ -53,10 +60,11 @@ const CategoryPage = () => {
             <Card key={item._id}
               onClick={()=> navigate(`/product/${item.id}`)}
               sx={{
+                position: "relative",
                 height: "100%",
                 display: 'flex', 
                 flexDirection: 'column',
-                borderRedius: 2,
+                borderRadius: 2,
                 transition: "0.3s",
 
                 "&:hover": {
@@ -64,6 +72,10 @@ const CategoryPage = () => {
                   transform: "translateY(-4px)"
                 }
             }}>
+
+              <WishlistButton productId={item._id}/>
+
+        
               <CardMedia component="img" image={item.url} alt={item.title?.shortTitle} sx={{
                 height: "200px",
                 width: '100%',
@@ -119,7 +131,8 @@ const CategoryPage = () => {
                   variant='contained'
                   fullWidth
                   sx={{
-                    marginTop: "auto"
+                    marginTop: "auto",
+                    backgroundColor: "#512886"
                   }}
                   onClick={(e)=> {
                     e.stopPropagation();

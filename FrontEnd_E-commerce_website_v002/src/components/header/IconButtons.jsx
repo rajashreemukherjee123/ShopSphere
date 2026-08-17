@@ -1,5 +1,5 @@
 
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Badge, Box, IconButton, styled } from '@mui/material';
 import { DataContext } from '../../context/DataProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -10,7 +10,11 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 import LoginDialog from '../login/LoginDialog';
 import Profile from './Profile';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import WishList from '../wishlist/WishListPage';
+import { getWishlist } from '../../redux/actions/wishListAction';
+import { getCartDetails } from '../../redux/actions/cartAction';
 
 const IconContainer = styled(Box)(({ theme, mobileIconView }) => ({
     display: 'flex',
@@ -37,6 +41,8 @@ const IconContainer = styled(Box)(({ theme, mobileIconView }) => ({
 }));
 
 const IconButtons = ({ mobileIconView }) => {
+
+    const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
     const { account, setAccount } = useContext(DataContext);
     const { cartItems } = useSelector(state => state.cart);
@@ -44,7 +50,7 @@ const IconButtons = ({ mobileIconView }) => {
     const location = useLocation();
     const isCartActive = location.pathname === '/cart';
 
-    
+    // cart count
     const totalCartQty = cartItems?.reduce((sum, item) => sum + (item.quantity || 1), 0) || 0;
 
     const openDialog = () => setOpen(true);
@@ -56,6 +62,20 @@ const IconButtons = ({ mobileIconView }) => {
             setOpen(true);
         }
     };
+
+
+
+    // wishlist
+    const {wishList} = useSelector((state)=> state.wishList);
+    const wishListCount = wishList?.items?.length || 0;
+
+    useEffect(()=>{
+        if(account){
+            dispatch(getCartDetails())
+            dispatch(getWishlist())
+        }
+    },[account,dispatch])
+
 
     return (
         <IconContainer mobileIconView={mobileIconView}>
@@ -76,9 +96,18 @@ const IconButtons = ({ mobileIconView }) => {
                 </IconButton>
             )}
 
-            <IconButton size="small">
-                <FavoriteBorderIcon fontSize="small" />
+
+
+
+            <IconButton size="small" onClick={()=> navigate("/wishlist")}>
+                <Badge badgeContent={wishListCount} color='error'>
+                    <FavoriteBorderIcon  fontSize="small" />
+                </Badge>
+                
             </IconButton>
+
+
+
 
             <IconButton onClick={handleCartClick}>
                 
