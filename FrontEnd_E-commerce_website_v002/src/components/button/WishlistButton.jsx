@@ -16,7 +16,7 @@ const WishlistButton = ({productId, sx}) => {
       )
     
       const isWishListed = wishList?.items?.some((item)=>{
-          return item.productId.toString() === productId.toString()
+          return item?.productId?.toString() === productId?.toString()
         });
     
       const handleWishlist = (e) => {

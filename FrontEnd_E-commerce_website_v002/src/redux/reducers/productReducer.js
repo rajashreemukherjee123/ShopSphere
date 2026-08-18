@@ -18,11 +18,11 @@ export const getProductsReducer = (state = { products: [], loading: false }, act
 export const getProductDetailsReducer = (state = { product: {} }, action)=>{
     switch(action.type) {
         case actionType.GET_PRODUCTS_DETAILS_REQUEST:
-            return { loading: true, products: [] }
+            return { loading: true, product: {} }
         case  actionType.GET_PRODUCTS_DETAILS_SUCCESS:
             return { loading: false, product: action.payload}
         case actionType.GET_PRODUCTS_DETAILS_FAIL:
-            return { loading: false,  products: [], error: action.payload}
+            return { loading: false,  product: {}, error: action.payload}
         case actionType.GET_PRODUCTS_DETAILS_RESET:
             return { product: {} }
         default:

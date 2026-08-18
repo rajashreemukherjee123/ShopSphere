@@ -55,10 +55,10 @@ const DetailView = () => {
     );
 
     useEffect(() => {
-        if (product && id !== product.id)
+        // if (product && id !== product.id)
             dispatch(getProductDetails(id));
 
-    }, [dispatch, id, product, loading]);
+    }, [dispatch, id]);
 
     return (
         <Component>

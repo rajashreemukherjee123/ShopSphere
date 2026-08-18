@@ -134,12 +134,13 @@ const Slide = ({ title, timer, section }) => {
       >
         {products.map((product, index) => (
           <NavLink
+            key={product._id || index}
             to={`/product/${product.id}`}
             style={{ textDecoration: "none" }}
           >
-            <Box textAlign="center" style={{ padding: "25px 15px" }}>
+            <Box  sx={{ padding: "25px 15px", textAlign:"center" }}>
               
-                <Image key={index} src={product.url} alt="product" />
+                <Image  src={product.url} alt="product" />
 
                 <Text style={{ fontWeight: 600, color: "#212121" }}>
                     {product.title.shortTitle}
