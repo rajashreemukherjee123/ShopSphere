@@ -11,16 +11,21 @@ const WishlistButton = ({productId, sx}) => {
     const dispatch = useDispatch();
 
 
-      const { wishList } = useSelector(
+      const { wishList, loading } = useSelector(
         (state)=> state.wishList
       )
     
       const isWishListed = wishList?.items?.some((item)=>{
-          return item?.productId?.toString() === productId?.toString()
+          const itemPid =  item?.productId?._id ?? item?.productId;
+          return itemPid?.toString() === productId?.toString();
         });
     
       const handleWishlist = (e) => {
         e.stopPropagation();
+
+        if(loading){
+          return;
+        }
     
         if(isWishListed){
           dispatch(removeWishList(productId));

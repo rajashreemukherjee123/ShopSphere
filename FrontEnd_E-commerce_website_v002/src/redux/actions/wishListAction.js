@@ -31,6 +31,11 @@ export const addToWishList = (productId)=> async(dispatch)=>{
 export const getWishlist = ()=> async(dispatch)=>{
     try{
         const token = localStorage.getItem("token");
+
+        dispatch({
+            type: actionTypes.WISH_LIST_GET_REQUEST
+        });
+
         const {data} = await axios.get(`${URL}/wishList/show`,{
             headers:{
                 "Content-Type":"application/json",
@@ -41,8 +46,13 @@ export const getWishlist = ()=> async(dispatch)=>{
         dispatch({type: actionTypes.WISH_LIST_GET_ITEM,
             payload: data.wishListObj
         })
+
     }catch(err){
-         console.log("Wishlist Error:", err.message);
+        
+         dispatch({
+            type: actionTypes.WISH_LIST_GET_FAIL,
+            payload: err.message
+         })
     }
 }
 

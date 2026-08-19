@@ -17,6 +17,7 @@ const addToWishList = async(req,res)=>{
                 }]
             })
 
+            wishListObj = await wishListObj.populate("items.productId");
             return res.status(200).json({message : "Product added to wishlist",wishList: wishListObj});
         }
         const alradyExist =  wishListObj.items.some((item)=>{
