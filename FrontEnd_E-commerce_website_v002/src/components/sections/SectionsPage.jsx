@@ -5,6 +5,7 @@ import { useParams,  useNavigate } from 'react-router-dom';
 import {getProductSection} from '../../redux/actions/productAction'
 import {addToCartAction} from '../../redux/actions/cartAction'
 import WishlistButton from '../button/WishlistButton';
+import { toast } from "react-toastify";
 
 
 const SectionsPage = () => {
@@ -124,11 +125,16 @@ const SectionsPage = () => {
                       variant='contained'
                       fullWidth
                       sx={{
-                        marginTop: "auto"
-                      }}
+                        marginTop: "auto",
+                        backgroundColor:"#512886",
+                        "&:hover": {
+                              backgroundColor: "#85399c",
+                              boxShadow: 2
+                      }}}
                       onClick={(e)=> {
                         e.stopPropagation();
-                        dispatch(addToCartAction(item._id, 1))
+                        dispatch(addToCartAction(item._id, 1));
+                        toast.success("Product successfully added from Cart");
                       }}
                     >
                       Add to Cart

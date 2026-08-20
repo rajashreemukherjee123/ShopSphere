@@ -1,6 +1,9 @@
 
 import './App.css';
 import {Box} from '@mui/material'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 ////////////////
 import React, { useEffect, useContext } from 'react';
 import { jwtDecode } from 'jwt-decode';
@@ -63,7 +66,7 @@ const App = () => {
 
 
   return (
-    
+    <>
       <BrowserRouter>
         <Header/>
         <Box style= {{marginTop:75}}>
@@ -81,7 +84,13 @@ const App = () => {
           </Routes>
         </Box>
       </BrowserRouter>
-    
+
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        theme="light"
+    />
+  </>  
   )
 }
 

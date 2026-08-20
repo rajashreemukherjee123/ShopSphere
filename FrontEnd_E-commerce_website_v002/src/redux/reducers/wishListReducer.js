@@ -43,8 +43,10 @@ export const wishListReducer = ( state = { wishList: null, loading: false, error
                     wishList: {
                         ...state.wishList,
                         items: state.wishList.items.filter((item)=>{
+                            const itemPid = item?.productId?._id ?? item?.productId;
                             return (
-                                item.productId.toString() !== action.payload.toString()
+                
+                                itemPid.toString() !== action.payload.toString()
                             )
                         })
                     },

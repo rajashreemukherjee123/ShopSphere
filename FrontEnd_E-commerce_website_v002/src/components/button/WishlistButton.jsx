@@ -1,15 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IconButton } from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToWishList, removeWishList } from '../../redux/actions/wishListAction';
+import { toast } from 'react-toastify';
 
 
-const WishlistButton = ({productId, sx}) => {
+const WishlistButton = ({productId, sx }) => {
 
     const dispatch = useDispatch();
-
 
       const { wishList, loading } = useSelector(
         (state)=> state.wishList
@@ -20,7 +20,7 @@ const WishlistButton = ({productId, sx}) => {
           return itemPid?.toString() === productId?.toString();
         });
     
-      const handleWishlist = (e) => {
+      const handleWishlist = async(e) => {
         e.stopPropagation();
 
         if(loading){
@@ -28,17 +28,31 @@ const WishlistButton = ({productId, sx}) => {
         }
     
         if(isWishListed){
-          dispatch(removeWishList(productId));
+          await dispatch(removeWishList(productId));
+          
+          toast.info(
+            "Product removed from wishlist"
+          );
+
         }else{
-          dispatch(addToWishList(productId));
+          await dispatch(addToWishList(productId));
+          toast.success(
+            "Product added from wishlist"
+          )
+          
         }
-      }
+        
+      };
+
+
+      
     
     //   useEffect(()=>{
     //     dispatch(getWishlist());
     //   }, [dispatch]);
   return (
-    <IconButton onClick={handleWishlist} sx={{
+    <>
+      <IconButton onClick={handleWishlist} sx={{
         position: "absolute",
         top: 10,
         right: 10,
@@ -66,7 +80,12 @@ const WishlistButton = ({productId, sx}) => {
             }
 
       
-    </IconButton>
+      </IconButton>
+    </>
+    
+
+
+    
   )
 }
 

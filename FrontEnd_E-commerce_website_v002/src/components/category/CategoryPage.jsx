@@ -6,6 +6,7 @@ import {useEffect} from 'react'
 import { getProductCategory } from "../../redux/actions/productAction";
 import { addToCartAction } from "../../redux/actions/cartAction";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 
 import WishlistButton from "../button/WishlistButton"
@@ -19,6 +20,7 @@ const CategoryPage = () => {
 
   const navigate = useNavigate()
 
+  
   // ---------------- Category products ----------------
   const { products, loading, error } = useSelector(
     (state)=> state.getProductCategory
@@ -27,7 +29,7 @@ const CategoryPage = () => {
   useEffect(()=>{
     dispatch(getProductCategory(category))
   },[dispatch,category]) 
-
+ 
 
   
 
@@ -132,11 +134,16 @@ const CategoryPage = () => {
                   fullWidth
                   sx={{
                     marginTop: "auto",
-                    backgroundColor: "#512886"
+                    backgroundColor: "#512886",
+                    "&:hover": {
+                          backgroundColor: "#85399c",
+                          boxShadow: 2
+                    }
                   }}
                   onClick={(e)=> {
                     e.stopPropagation();
                     dispatch(addToCartAction(item._id, 1))
+                    toast.success("Product successfully added from Cart")
                   }}
                 >
                   Add to Cart
