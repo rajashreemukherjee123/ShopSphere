@@ -22,6 +22,12 @@ const WishlistButton = ({productId, sx }) => {
     
       const handleWishlist = async(e) => {
         e.stopPropagation();
+        const token = localStorage.getItem("token");
+
+        if(!token){
+          toast.info("Please login to add product to your wishlist");
+          return;
+        }
 
         if(loading){
           return;
@@ -37,7 +43,7 @@ const WishlistButton = ({productId, sx }) => {
         }else{
           await dispatch(addToWishList(productId));
           toast.success(
-            "Product added from wishlist"
+            "Product added from wishlist ❤️"
           )
           
         }

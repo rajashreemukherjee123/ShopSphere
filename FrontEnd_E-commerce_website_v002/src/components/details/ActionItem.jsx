@@ -10,6 +10,7 @@ import WishlistButton from '../button/WishlistButton';
 
 import { addToCartAction } from '../../redux/actions/cartAction';
 import useRazorpay from '../../hooks/useRazorpay'; // centralized hook
+import { toast } from 'react-toastify';
 
 const LeftContainer = styled(Box)(({ theme }) => ({
     padding: '40px 0 0 80px',
@@ -39,10 +40,14 @@ const ActionItem = ({ product }) => {
     const { initiatePayment } = useRazorpay(); // use hook
 
     const addItemToCart = async () => {
-        if (product._id) {
+        const token = localStorage.getItem("token");
+        if(!token){
+            toast.info("Please login to add product to your cart");
+        }else if(token && product._id ){
             await dispatch(addToCartAction(product._id, quantity));
-            navigate('/cart');
+            toast.success("Product successfully added from Cart");
         }
+        
     };
 
     // Buy Now - useRazorpay hook use 

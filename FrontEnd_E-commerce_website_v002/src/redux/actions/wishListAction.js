@@ -1,7 +1,7 @@
-import axios from "axios";
+import axios from "../axiosInstance";
 import * as actionTypes from "../constants/wishListConstant";
 
-const URL = "http://localhost:3000";
+// const URL = "http://localhost:3000";
 
 
 // ---------------- Add wishlist ------------------------
@@ -9,21 +9,19 @@ export const addToWishList = (productId)=> async(dispatch)=>{
     try{
         const token = localStorage.getItem("token");
 
-        const { data } = await axios.post(`${URL}/wishList/add`,{
+        const { data } = await axios.post(`/wishList/add`,{
             productId:productId
-        },{
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization": `Bearer ${token}`
-            }
         });
         
         dispatch({type: actionTypes.WISH_LIST_ADD_ITEM,
                 payload: data.wishList
         })
 
+        return data.wishList;
+
     }catch(err){
         console.log("Wishlist Error:", err.message);
+        throw err;
     }
 }
 
@@ -35,24 +33,22 @@ export const getWishlist = ()=> async(dispatch)=>{
         dispatch({
             type: actionTypes.WISH_LIST_GET_REQUEST
         });
-
-        const {data} = await axios.get(`${URL}/wishList/show`,{
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization": `Bearer ${token}`
-            }
-        });
+        
+        const {data} = await axios.get(`/wishList/show`);
 
         dispatch({type: actionTypes.WISH_LIST_GET_ITEM,
             payload: data.wishListObj
-        })
+        });
+
+        return data.wishListObj;
 
     }catch(err){
         
          dispatch({
             type: actionTypes.WISH_LIST_GET_FAIL,
-            payload: err.message
-         })
+            payload: err.response?.data?.message || err.message
+         });
+         throw err;
     }
 }
 
@@ -61,17 +57,14 @@ export const getWishlist = ()=> async(dispatch)=>{
 export const removeWishList = (productId)=> async(dispatch)=>{
     try{
         const token = localStorage.getItem("token");
-        await axios.delete(`${URL}/wishList/remove/${productId}`,{
-            headers:{
-                "Content-Type":"application/json",
-                "Authorization": `Bearer ${token}`
-            }
-        });
+        await axios.delete(`/wishList/remove/${productId}`);
 
         dispatch({type: actionTypes.WISH_LIST_REMOVE_ITEM,
             payload: productId
         })
+        return productId;
     }catch(err){
         console.log("Wishlist Error:", err.message);
+        throw err;
     }
 }

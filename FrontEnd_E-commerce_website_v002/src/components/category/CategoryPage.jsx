@@ -31,6 +31,19 @@ const CategoryPage = () => {
   },[dispatch,category]) 
  
 
+  // --------------- Add to cart button click -----------
+  const handleAddtoCart = (e,productId)=>{
+    e.stopPropagation();
+    const token = localStorage.getItem("token");
+    if(!token){
+      toast.info("Please login to add product to your cart")
+    }else{
+      dispatch(addToCartAction(productId, 1))
+      toast.success("Product successfully added from Cart")
+    }
+    
+  }
+  
   
 
 
@@ -140,11 +153,7 @@ const CategoryPage = () => {
                           boxShadow: 2
                     }
                   }}
-                  onClick={(e)=> {
-                    e.stopPropagation();
-                    dispatch(addToCartAction(item._id, 1))
-                    toast.success("Product successfully added from Cart")
-                  }}
+                  onClick={(e)=>handleAddtoCart(e, item._id)}
                 >
                   Add to Cart
                 </Button>

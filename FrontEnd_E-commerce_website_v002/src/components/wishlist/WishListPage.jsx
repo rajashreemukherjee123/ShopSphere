@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Box,Card,CardMedia,CardContent,Typography,Button } from '@mui/material'; 
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { addToCartAction } from '../../redux/actions/cartAction';
 import { removeWishList } from '../../redux/actions/wishListAction';
 import { getProductDetails } from '../../redux/actions/productAction';
 import { toast } from "react-toastify";
+import LoginDialog from "../login/LoginDialog";
 
 
 const WishListPage = () => {
@@ -15,12 +16,131 @@ const WishListPage = () => {
   const dispatch = useDispatch();
   const { wishList,loading, error } = useSelector((state)=> state.wishList)
 
+  const [openLogin, setOpenLogin] = useState(false);
+
+  const token = localStorage.getItem("token");
+  const isLoggedIn = !!token;
+
   useEffect(()=>{
-    dispatch(getWishlist());
-  },[dispatch]);
+    if(isLoggedIn){
+      dispatch(getWishlist());
+    }   
+  },[dispatch, isLoggedIn]);
+
+
+  // ------- Not login user -----
+  if(!isLoggedIn){
+    return(
+      <Box sx={{
+        minHeight: "60vh",
+        alignContent: "center",
+        textAlign: "center",
+        padding: 3
+      }}>
+        <Box>
+          <Typography variant='h5' sx={{
+            fontWeight: 600,
+            marginBottom: 1
+          }}>
+            Please Login to View Your Wishlist
+          </Typography>
+
+          <Typography sx={{
+            color: "text.secondary",
+            marginBottom: 3
+          }}>
+            Login to save products to your wishlist and view them anytime.
+          </Typography>
+
+          <Button variant='contained'
+            onClick={()=> setOpenLogin(true)}
+            sx={{
+              textTransform: "none",
+              padding: "10px 30px",
+              "&:hover":{
+                backgroundColor: "#85399c"
+              }
+            }}
+          >
+            Login to Continue
+          </Button>
+
+          <LoginDialog 
+            open = {openLogin}
+            setOpen={setOpenLogin}
+          />
+        </Box>
+      </Box>
+    )
+  }
+
+
+  // ------- Logged in and loading -----
+  if(loading){
+    return(
+      <Box sx={{ textAlign: "center", padding: 8}}>
+        <Typography>
+          Loading Wishlist...
+        </Typography>
+      </Box>
+    )
+  }
+
+
+  // ------- Error -----
+  if(error){
+    return(
+      <Box sx={{
+        textAlign: "center",
+        padding: 8
+      }}>
+        <Typography color='error'>
+          Something went wrong while loading your wishlist.
+        </Typography>
+      </Box>
+    )
+  }
+
+
+  // ------- wishlist Empty -----
+  if(!wishList || wishList.items?.length === 0){
+    return(
+      
+        <Box sx={{
+          width: "100%",
+          textAlign: "center",
+          padding: "80px 20px"
+        }}>
+          <Typography variant='h5' sx={{
+            fontWeight: 600,
+            marginBottom: 2
+          }}>
+            Your Wishlist is Empty
+          </Typography>
+
+          <Typography sx={{
+            color: "text.secondary",
+            marginBottom: 3
+          }}>
+            You haven't added any products to your wishlist yet.
+          </Typography>
+
+          <Button variant='contained' 
+            onClick={()=> navigate("/")}
+            sx={{
+              backgroundColor: "#512886",
+              textTransform: "none"
+            }}
+          >
+            Continue Shopping
+          </Button>
+        </Box>
+      
+    )
+  }
 
   return (
-    <Box sx={{
+      <Box sx={{
       display:"grid",
       gridTemplateColumns:{
         xs: "1fr 1fr",
@@ -30,10 +150,6 @@ const WishListPage = () => {
       gap: 3,
       padding: 3
     }}>
-
-      {loading && <Typography>Loading...</Typography>}
-
-      {error && <Typography sx={{color:"error"}}>{error}</Typography>}
 
       {!loading && wishList?.items?.map((item)=>{
         return (
@@ -154,6 +270,7 @@ const WishListPage = () => {
       })}
 
     </Box>
+    
   )
 }
 

@@ -52,6 +52,14 @@ export const wishListReducer = ( state = { wishList: null, loading: false, error
                     },
                     error: null
                 };
+
+
+            case actionTypes.WISH_LIST_RESET:
+                return {
+                    wishList: null,
+                    loading: false,
+                    error: null
+                }
             
             default:
                 return state;

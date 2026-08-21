@@ -6,3 +6,5 @@ export const CART_ERROR = "cartError";
 export const CART_LOADING = "cartLoading";
 
 export const CART_CLEAR = "cartClear";
+
+export const CART_RESET = "cartReset";

@@ -7,6 +7,7 @@ import  ButtonGroup from './ButtonGroup';
 
 import { removeFromCartAction } from '../../redux/actions/cartAction';
 import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 const Component = styled(Box)`
     border-top: 4px solid #f0f0f0;
@@ -44,6 +45,7 @@ const CartItem = ({item}) => {
     const removeItemFromCart = (id) =>{
         console.log("Removing product with ID:", id);
         dispatch(removeFromCartAction(id));
+        toast.info("Product removed from Cart");
     }
 
   return (

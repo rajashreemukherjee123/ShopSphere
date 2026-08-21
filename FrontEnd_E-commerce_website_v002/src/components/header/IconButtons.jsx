@@ -16,6 +16,9 @@ import WishList from '../wishlist/WishListPage';
 import { getWishlist } from '../../redux/actions/wishListAction';
 import { getCartDetails } from '../../redux/actions/cartAction';
 
+
+
+
 const IconContainer = styled(Box)(({ theme, mobileIconView }) => ({
     display: 'flex',
     alignItems: 'center',
@@ -55,12 +58,12 @@ const IconButtons = ({ mobileIconView }) => {
 
     const openDialog = () => setOpen(true);
 
+    
+    const token = localStorage.getItem("token");
+    const isLoggedIn = !!token;
+
     const handleCartClick = () => {
-        if (account) {
-            navigate('/cart');
-        } else {
-            setOpen(true);
-        }
+       navigate("/cart");
     };
 
 
