@@ -55,7 +55,9 @@ const Header = () => {
                 <Divider />
 
                 <ListItem sx={{ mt: 2 }}>   
-                    <CastomButtons mobileView={true}/>
+                    <CastomButtons mobileView={true}
+                        
+                    />
                     
                 </ListItem>
             </List>

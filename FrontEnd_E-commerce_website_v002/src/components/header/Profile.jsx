@@ -1,73 +1,166 @@
 import React, { useState } from 'react'
-import {Box,Typography,Menu,MenuItem,styled} from '@mui/material';
+import {Box,Typography,Menu,MenuItem,Divider} from '@mui/material';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { useDispatch } from 'react-redux';
 import { WISH_LIST_RESET } from '../../redux/constants/wishListConstant';
 import { CART_RESET } from '../../redux/constants/cartConstant';
-
-
-const Component = styled(Menu)`
-    margin-top: 5px;
-`;
-
-const Logout = styled(Typography)`
-    font-size: 14px;
-    margin-left: 20px
-`;
+import { USER_LOGOUT } from '../../redux/constants/userConstant';
+import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
 
 
-const Profile = ({account, setAccount}) => {
+
+const Profile = ({account, setAccount, mobileIconView }) => {
 
   const dispatch = useDispatch();
 
-    const [open,setOpen] = useState(false);
+    
+    const [anchorEl, setAnchorE1 ] = useState(null);
 
-    const handleClick = (event)=>{
-        setOpen(event.currentTarget);
-    }
+    const userEmail = localStorage.getItem("userEmail") || "";
+
+    const handleClick = (e)=>{
+        setAnchorE1(e.currentTarget);
+    };
 
     const handleClose = ()=>{
-        setOpen(false);
+        setAnchorE1(null);
     }
 
     const handlelogout = ()=>{
         localStorage.removeItem("token");
         localStorage.removeItem("userName");
+        localStorage.removeItem("userEmail");
         setAccount("");
 
+        dispatch({type: USER_LOGOUT});
         dispatch({type: WISH_LIST_RESET});
         dispatch({type: CART_RESET});
-    }
+
+        handleClose();
+    };
 
   return (
     <>
-      <Box onClick={handleClick}>
-        <Typography sx={{
-                  maxWidth: 120,           
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis', 
-                  whiteSpace: 'nowrap',
-                  fontSize: '14px',
-                  lineHeight: '36px', 
-                  px: 1 
-                }}>
+    {/* --------------------------- Desktop ---------------- */}
+      
+      {!mobileIconView && (
+        <Box 
+          onClick = {handleClick}
+          sx={{
+            cursor: "pointer",
+            minWidth: 0,
+            maxWidth: 160
+          }}
+        >
+          <Typography
+            sx={{
+              maxWidth: 160,
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap",
+              fontSize: "14px",
+              lineHeight: "36px",
+              px: 1
+            }}
+          >
+            {account}
+          </Typography>
+        </Box>
+      )}
+
+
+      {/* -------------------- Mobile-------------------- */}
+            {mobileIconView && (
+              <Box
+                onClick={handleClick}
+                sx={{
+                  width: 36,
+                  height: 36,
+                  display: "flex",
+                  alignItems: "center",
+                  backgroundColor: "#F6F6F6",
+                  borderRadius: "8px",
+                  cursor: "pointer",
+
+                  "&:hover": {
+                    backgroundColor: "#EDEDED"
+                  }
+                }}
+              >
+                <PermIdentityIcon />
+              </Box>
+            )}
+
+            {/* -------------------- Profile Menu -------------------- */}
+            <Menu
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "right"
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right"
+              }}
+              sx={{
+                marginTop: "6px"
+              }}
+            >
+              {/* user information */}
+              <Box 
+                sx={{ padding: "10px 20px", minWidth: 220 }}
+              >
+                <Typography 
+                  sx={{
+                    fontWeight: 600,
+                    fontSize: 15,
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap"
+                  }}
+                >
                   {account}
                 </Typography>
-      </Box>
-      <Component
+
+
+                <Typography
+                  sx={{
+                    color: "text.secondary",
+                    fontSize: 13,
+                    marginTop: "3px",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap"
+                  }}
+                >
+                  {userEmail}
+                </Typography>
+              </Box>
+
+              <Divider/>
+
+              {/* Logout  */}
+              <MenuItem
+                onClick={handlelogout}
+                sx={{padding: "10px 20px"}}
+              >
+                <PowerSettingsNewIcon color='error' fontSize='small'/>
+
+                <Typography
+                  sx={{
+                    marginLeft: 1,
+                    fontSize: 14
+                  }}
+                >
+                  Logout
+                </Typography>
+              </MenuItem>
+
+            </Menu>
             
-            anchorEl={open}
-            open={Boolean(open)}
-            onClose={handleClose}
-            
-        >
-            
-            <MenuItem onClick={()=>{handleClose(); handlelogout();}}>
-                <PowerSettingsNewIcon color='primary' fontSize='small'/>
-                <Logout>Logout</Logout>
-            </MenuItem>
-      </Component>
     </>
   )
 }

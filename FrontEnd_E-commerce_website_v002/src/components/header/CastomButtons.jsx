@@ -37,7 +37,11 @@ const ButtonCastom = styled(Box)(({ theme, mobileView }) => ({
 
 
 
-const CastomButtons = ({ mobileView }) => {
+const CastomButtons = ({ mobileView}) => {
+
+    
+
+
   return (
     <ButtonCastom mobileView={mobileView}>
 
@@ -47,17 +51,18 @@ const CastomButtons = ({ mobileView }) => {
           fontWeight: isActive ? 'bold' : 'normal',
           textDecoration: 'none',
           marginRight: '20px'
+
         })} >
             <Typography>Home</Typography>
         </NavLink>
 
 {/* fashion */}
-        <NavLink to='/category/fashion' style={({ isActive }) => ({
+        <NavLink to='/category/fashion'  style={({ isActive }) => ({
           color: isActive ? '#124dee' : 'inherit', 
           fontWeight: isActive ? 'bold' : 'normal',
           textDecoration: 'none',
-          marginRight: '20px'
-        })}>
+          marginRight: '20px',
+        })} >
             <Typography>Fashion</Typography>
         </NavLink>
 

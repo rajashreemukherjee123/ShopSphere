@@ -18,7 +18,7 @@ const loginImg = 'https://plus.unsplash.com/premium_photo-1708336928339-de330a14
  
 const Component = styled(Box)(({ theme }) => ({
     height: "70vh",
-    width: "90vh",
+    width: "500px",
     overflow: "hidden",
     [theme.breakpoints.down("sm")]: {
         width: '100%',
@@ -79,7 +79,7 @@ const loginInitialValues = {
  
 const LoginDialog = ({ open, setOpen }) => {
  
-    const [account, toggleAccount] = useState(accountInitialValue.Signup);
+    const [account, toggleAccount] = useState(accountInitialValue.login);
     const [showPassword, setShowPassword] = useState(false);
     const [signup, setSignup] = useState(signupInitialValues);
     const { setAccount } = useContext(DataContext);
@@ -90,7 +90,7 @@ const LoginDialog = ({ open, setOpen }) => {
  
     const handleClose = () => {
         setOpen(false);
-        toggleAccount(accountInitialValue.Signup);
+        toggleAccount(accountInitialValue.login);
         setError(false);
         setShowPassword(false);
     }
@@ -139,15 +139,19 @@ const LoginDialog = ({ open, setOpen }) => {
             handleClose(); // dialog close
  
             const name = response.data.loginuser?.name;
-            setAccount(name); 
+            setAccount(name);
+            
+            const email = response.data.loginuser?.email;
  
             const userData = {
                 token: response.data.token,
-                name: name
+                name: name,
+                email: email
             };
  
             localStorage.setItem("token", response.data.token);
             localStorage.setItem("userName", name);
+            localStorage.setItem("userEmail", email)
  
             dispatch({
                 type: USER_LOGIN_SUCCESS,
@@ -158,6 +162,8 @@ const LoginDialog = ({ open, setOpen }) => {
             setError(true);
         }
     }
+
+ 
  
     return (
         <div>
@@ -167,9 +173,77 @@ const LoginDialog = ({ open, setOpen }) => {
  
                         <Image bg={account.view === "signup" ? signupImg : loginImg} />
  
-                        {/* ==================== SIGNUP ==================== */}
-                        {account.view === "signup" ? (
+                        {/* ==================== LOGIN ==================== */}
+                        {account.view === "login" ? (
+                            <FormDialog sx={{ padding: "30px" }}>
+                                <Typography sx={{ fontWeight: 700, fontSize: '22px' }}>Log In</Typography>
  
+                                {/* Email */}
+                                <Typography sx={{ fontSize: '13px', fontWeight: 200, mt: 3 }}>Email Address</Typography>
+                                <TextField
+                                    fullWidth size="small" name='email'
+                                    value={login.email}
+                                    onChange={onValueChange}
+                                    placeholder="abc@gmail.com"
+                                    sx={{
+                                        '& .MuiInputBase-root': { height: 35, width: "100%", fontSize: '13px' },
+                                        '& input::placeholder': { fontSize: '12px' }
+                                    }}
+                                />
+                                {error && <Error>Please enter valid email or password</Error>}
+ 
+                                
+                                <Typography sx={{ fontSize: '13px', fontWeight: 200, mt: 1 }}>Password</Typography>
+                                <TextField
+                                    fullWidth size="small" name='pass1'
+                                    value={login.pass1}
+                                    onChange={onValueChange}
+                                    placeholder="Enter password"
+                                    type={showPassword ? "text" : "password"}
+                                    slotProps={{
+                                        input: {
+ 
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    onClick={() => {
+                                                        console.log("clicked", showPassword);
+                                                        setShowPassword(!showPassword)}}
+                                                    edge="end"
+                                                    size="small"
+                                                >
+                                                    {showPassword ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        )
+                                        }
+                                    }}
+                                    sx={{
+                                            '& .MuiInputBase-root': { 
+                                                fontSize: '13px',   
+                                                width: "100%"
+                                            },
+                                            '& input::placeholder': { fontSize: '12px' }
+                                        }}
+                                />
+ 
+                                <Button
+                                    fullWidth variant="contained"
+                                    onClick={loginBtn}
+                                    sx={{ mt: 3, height: "35px", bgcolor: '#8A33FD', '&:hover': { bgcolor: '#7226d4' }, textTransform: 'none', py: 1.5, width: '40%' }}
+                                >
+                                    Log In
+                                </Button>
+ 
+                                <Typography variant="body2" align="left" sx={{ mt: 1, fontSize: '13px' }}>
+                                    Don't have an account? <Link component="button" onClick={toggleSignup} sx={{ fontWeight: 'bold', color: 'inherit', fontSize: '13px' }}>Sign Up</Link>
+                                </Typography>
+                            </FormDialog>
+                            
+ 
+                        ) : (
+ 
+                            /* ==================== SIGNUP ==================== */
                             <FormDialog>
                                 <Typography sx={{ fontWeight: 700, fontSize: '22px' }}>Sign Up</Typography>
                                 <Typography sx={{ fontSize: '11px', color: '#666' }}>
@@ -210,18 +284,21 @@ const LoginDialog = ({ open, setOpen }) => {
                                     onChange={handleChange}
                                     placeholder="Enter password"
                                     type={showPassword ? "text" : "password"}
-                                    InputProps={{
-                                        endAdornment: (
+                                    slotProps={{
+                                        input: {
+                                            endAdornment: (
                                             <InputAdornment position="end">
                                                 <IconButton
                                                     onClick={() => setShowPassword(!showPassword)}
                                                     edge="end"
                                                     size="small"
                                                 >
-                                                    {showPassword ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}
+                                                    {showPassword ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />  }
                                                 </IconButton>
                                             </InputAdornment>
-                                        )
+                                            )
+                                        }
+                                        
                                     }}
                                     sx={{
                                             '& .MuiInputBase-root': { 
@@ -267,69 +344,6 @@ const LoginDialog = ({ open, setOpen }) => {
  
                                 <Typography variant="body2" align="left" sx={{ mt: 1, fontSize: '13px' }} onClick={toggleLogin}>
                                     Already have an account? <Link component="button" sx={{ fontWeight: 'bold', color: 'inherit', fontSize: '13px' }}>Log in</Link>
-                                </Typography>
-                            </FormDialog>
- 
-                        ) : (
- 
-                            /* ==================== LOGIN ==================== */
-                            <FormDialog sx={{ padding: "30px" }}>
-                                <Typography sx={{ fontWeight: 700, fontSize: '22px' }}>Log In</Typography>
- 
-                                {/* Email */}
-                                <Typography sx={{ fontSize: '13px', fontWeight: 200, mt: 3 }}>Email Address</Typography>
-                                <TextField
-                                    fullWidth size="small" name='email'
-                                    value={login.email}
-                                    onChange={onValueChange}
-                                    placeholder="abc@gmail.com"
-                                    sx={{
-                                        '& .MuiInputBase-root': { height: 35, width: "100%", fontSize: '13px' },
-                                        '& input::placeholder': { fontSize: '12px' }
-                                    }}
-                                />
-                                {error && <Error>Please enter valid email or password</Error>}
- 
-                                
-                                <Typography sx={{ fontSize: '13px', fontWeight: 200, mt: 1 }}>Password</Typography>
-                                <TextField
-                                    fullWidth size="small" name='pass1'
-                                    value={login.pass1}
-                                    onChange={onValueChange}
-                                    placeholder="Enter password"
-                                    type={showPassword ? "text" : "password"}
-                                    InputProps={{
-                                        endAdornment: (
-                                            <InputAdornment position="end">
-                                                <IconButton
-                                                    onClick={() => setShowPassword(!showPassword)}
-                                                    edge="end"
-                                                    size="small"
-                                                >
-                                                    {showPassword ? <VisibilityOffIcon fontSize="small" /> : <VisibilityIcon fontSize="small" />}
-                                                </IconButton>
-                                            </InputAdornment>
-                                        )
-                                    }}
-                                    sx={{
-                                            '& .MuiInputBase-root': { 
-                                                fontSize: '13px',   
-                                                width: "100%"
-                                            },
-                                            '& input::placeholder': { fontSize: '12px' }
-                                        }}
-                                />
- 
-                                <Button
-                                    fullWidth variant="contained"
-                                    onClick={loginBtn}
-                                    sx={{ mt: 3, height: "35px", bgcolor: '#8A33FD', '&:hover': { bgcolor: '#7226d4' }, textTransform: 'none', py: 1.5, width: '40%' }}
-                                >
-                                    Log In
-                                </Button>
- 
-                                <Typography variant="body2" align="left" sx={{ mt: 1, fontSize: '13px' }}>
-                                    Don't have an account? <Link component="button" onClick={toggleSignup} sx={{ fontWeight: 'bold', color: 'inherit', fontSize: '13px' }}>Sign Up</Link>
                                 </Typography>
                             </FormDialog>
                         )}

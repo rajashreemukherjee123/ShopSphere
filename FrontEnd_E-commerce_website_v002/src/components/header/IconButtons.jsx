@@ -19,7 +19,9 @@ import { getCartDetails } from '../../redux/actions/cartAction';
 
 
 
-const IconContainer = styled(Box)(({ theme, mobileIconView }) => ({
+const IconContainer = styled(Box, {
+    shouldForwardProp: (prop) => prop !== "mobileIconView"
+})(({ theme, mobileIconView }) => ({
     display: 'flex',
     alignItems: 'center',
     gap: '8px',
@@ -37,9 +39,10 @@ const IconContainer = styled(Box)(({ theme, mobileIconView }) => ({
     },
     [theme.breakpoints.down('md')]: {
         display: mobileIconView ? 'flex' : 'none',
-        flexDirection: mobileIconView ? 'flex' : 'row',
-        alignItems: 'flex-start',
-        gap: '15px'
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '8px',
+        minWidth: 0
     },
 }));
 
@@ -83,7 +86,10 @@ const IconButtons = ({ mobileIconView }) => {
     return (
         <IconContainer mobileIconView={mobileIconView}>
             {account ? (
-                <Profile account={account} setAccount={setAccount} />
+                <Profile account={account} 
+                        setAccount={setAccount} 
+                        mobileIconView={mobileIconView}
+                />
             ) : (
                 <IconButton
                     onClick={openDialog}
