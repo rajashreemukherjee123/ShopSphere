@@ -210,9 +210,9 @@ const products = [
   {
     id: "Product10",
     category: "electronics",
-    url: "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500",
+    url: "https://cdn.sheeel.com/catalog/product/cache/074f467fdf747a38ab5e8f88243fd86f/a/p/apple_13.3_inch_macbook_air_m1_8-core_cpu_8gb_ram_256gb_ssd_2020_-_mgn63ab-a-en.jpg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=1000",
+      "https://cdn.sheeel.com/catalog/product/cache/074f467fdf747a38ab5e8f88243fd86f/a/p/apple_13.3_inch_macbook_air_m1_8-core_cpu_8gb_ram_256gb_ssd_2020_-_mgn63ab-a-en.jpg?w=1000",
     title: {
       shortTitle: "MacBook Air",
       longTitle: "Apple MacBook Air M2 (13-inch, 8GB, 256GB SSD)",
@@ -361,9 +361,9 @@ const products = [
   {
     id: "Product18",
     category: "electronics",
-    url: "https://images.unsplash.com/photo-1517336714739-489689fd1ca8?w=500",
+    url: "https://media-ik.croma.com/Croma%20Assets/Computers%20Peripherals/Laptop/Images/303511_0_wfoosf.png?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1517336714739-489689fd1ca8?w=1000",
+      "https://media-ik.croma.com/Croma%20Assets/Computers%20Peripherals/Laptop/Images/303511_0_wfoosf.png?w=1000",
     title: {
       shortTitle: "Gaming Laptop",
       longTitle: "ASUS ROG Gaming Laptop (16GB, 512GB SSD)",
@@ -380,9 +380,9 @@ const products = [
   {
     id: "Product19",
     category: "electronics",
-    url: "https://images.unsplash.com/photo-1585386959984-a41552231658?w=500",
+    url: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1585386959984-a41552231658?w=1000",
+      "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=1000",
     title: {
       shortTitle: "Bluetooth Speaker",
       longTitle: "Portable Bluetooth Speaker with Deep Bass",
@@ -399,9 +399,9 @@ const products = [
   {
     id: "Product20",
     category: "appliance",
-    url: "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500",
+    url: "https://bossindia.com/wp-content/uploads/2025/04/B-551-Product-4.jpg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=1000",
+      "https://bossindia.com/wp-content/uploads/2025/04/B-551-Product-4.jpg?w=1000",
     title: {
       shortTitle: "Air Fryer",
       longTitle: "Digital Air Fryer 4L for Healthy Cooking",
@@ -420,9 +420,9 @@ const products = [
   {
     id: "Product21",
     category: "appliance",
-    url: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500",
+    url: "https://rukminim2.flixcart.com/image/480/640/xif0q/mixer-grinder-juicer/x/1/f/hydro-3jar-havells-original-imahdfm6yphxsjhp.jpeg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=1000",
+      "https://rukminim2.flixcart.com/image/480/640/xif0q/mixer-grinder-juicer/x/1/f/hydro-3jar-havells-original-imahdfm6yphxsjhp.jpeg?w=1000",
     title: {
       shortTitle: "Mixer Grinder",
       longTitle: "750W Mixer Grinder with 3 Jars",
@@ -439,9 +439,9 @@ const products = [
   {
     id: "Product22",
     category: "beauty",
-    url: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500",
+    url: "https://theskinstory.in/cdn/shop/files/10-vitamin-c-brightening-serum-face-serum-3155566.png?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1000",
+      "https://theskinstory.in/cdn/shop/files/10-vitamin-c-brightening-serum-face-serum-3155566.png?w=1000",
     title: {
       shortTitle: "Vitamin C Serum",
       longTitle: "Vitamin C Brightening Face Serum 30ml",
@@ -458,9 +458,9 @@ const products = [
   {
     id: "Product23",
     category: "beauty",
-    url: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=500",
+    url: "https://m.media-amazon.com/images/I/61DxkFqtr1L._AC_UF1000,1000_QL80_.jpg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1000",
+      "https://m.media-amazon.com/images/I/61DxkFqtr1L._AC_UF1000,1000_QL80_.jpg?w=1000",
     title: {
       shortTitle: "Sunscreen",
       longTitle: "SPF 50 PA++++ Daily Sunscreen 50g",
@@ -519,9 +519,9 @@ const products = [
   {
     id: "Product26",
     category: "beauty",
-    url: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500",
+    url: "https://www.bbassets.com/media/uploads/p/l/40288777_3-dot-key-barrier-repair-hydrating-gentle-face-wash-ph-55-for-normal-to-dry-skin.jpg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1000",
+      "https://www.bbassets.com/media/uploads/p/l/40288777_3-dot-key-barrier-repair-hydrating-gentle-face-wash-ph-55-for-normal-to-dry-skin.jpg?w=1000",
     title: {
       shortTitle: "Face Wash",
       longTitle: "Gentle Hydrating Face Wash 100ml",
@@ -537,31 +537,32 @@ const products = [
   },
   {
     id: "Product27",
-    category: "beauty",
-    url: "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=500",
-    detailUrl:
-      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1000",
-    title: {
-      shortTitle: "Moisturizer",
-      longTitle: "Ceramide Daily Moisturizing Cream 50g",
-    },
-    price: { mrp: 599, cost: 379, discount: "36%" },
-    quantity: 1,
-    description: "Deeply nourishes and repairs the skin barrier.",
-    discount: "Combo offer available",
-    tagline: "Soft and smooth skin",
-    sections: [
+  category: "beauty",
+  url: "https://m.media-amazon.com/images/I/81hlE-sDrsL._AC_UF1000,1000_QL80_.jpg?w=500",
+  detailUrl:
+    "https://m.media-amazon.com/images/I/81hlE-sDrsL._AC_UF1000,1000_QL80_.jpg?w=1000",
+  title: {
+    shortTitle: "Nail Polish",
+    longTitle: "Glossy Long Lasting Nail Polish",
+  },
+  price: { mrp: 299, cost: 199, discount: "33%" },
+  quantity: 1,
+  description: "Long-lasting glossy nail polish with a smooth and vibrant finish.",
+  discount: "Buy 2 and get extra 10% off",
+  tagline: "Beautiful nails, beautiful you",
+  sections: [
     "Recommended-items",
     "Suggesting-items",
-    ],
+    "deal-of-the-day"
+  ],
     
   },
   {
     id: "Product28",
     category: "beauty",
-    url: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500",
+    url: "https://m.media-amazon.com/images/I/61CKaUaz2+L._AC_UF350,350_QL80_.jpg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1000",
+      "https://m.media-amazon.com/images/I/61CKaUaz2+L._AC_UF350,350_QL80_.jpg?w=1000",
     title: {
       shortTitle: "Lipstick",
       longTitle: "Matte Long Lasting Lipstick - Ruby Red",
@@ -578,9 +579,9 @@ const products = [
   {
     id: "Product29",
     category: "beauty",
-    url: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=500",
+    url: "https://gs.painest.com/public/uploads/products/meta/tresemme-keratin-smooth-shampoo-with-argan-oil---340ml459-paikaree-meta.webp?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1522337660859-02fbefca4702?w=1000",
+      "https://gs.painest.com/public/uploads/products/meta/tresemme-keratin-smooth-shampoo-with-argan-oil---340ml459-paikaree-meta.webp?w=1000",
     title: {
       shortTitle: "Shampoo",
       longTitle: "Keratin Smooth Nourishing Shampoo 340ml",
@@ -597,9 +598,9 @@ const products = [
   {
     id: "Product30",
     category: "appliance",
-    url: "https://images.unsplash.com/photo-1585515656973-5b3d9c2f4b8b?w=500",
+    url: "https://m.media-amazon.com/images/I/81o81kb8WRL._AC_UF894,1000_QL80_.jpg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1585515656973-5b3d9c2f4b8b?w=1000",
+      "https://m.media-amazon.com/images/I/81o81kb8WRL._AC_UF894,1000_QL80_.jpg?w=1000",
     title: {
       shortTitle: "Rice Cooker",
       longTitle: "Automatic Electric Rice Cooker 1.8L",
@@ -616,9 +617,9 @@ const products = [
   {
     id: "Product31",
     category: "appliance",
-    url: "https://images.unsplash.com/photo-1586201375754-7c6f1b1f0d4d?w=500",
+    url: "https://glenindia.com/cdn/shop/products/1_46fe2990-e9cf-478c-821c-2074e28a42dc.jpg?v=1664254248&width=800?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1586201375754-7c6f1b1f0d4d?w=1000",
+      "https://glenindia.com/cdn/shop/products/1_46fe2990-e9cf-478c-821c-2074e28a42dc.jpg?v=1664254248&width=800?w=1000",
     title: {
       shortTitle: "Induction Cooktop",
       longTitle: "2000W Induction Cooktop with Touch Control",
@@ -635,9 +636,9 @@ const products = [
   {
     id: "Product32",
     category: "electronics",
-    url: "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500",
+    url: "https://images.unsplash.com/photo-1593640495348-9f86d4e7a719?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1583394838336-acd977736f90?w=1000",
+      "https://images.unsplash.com/photo-1593640495348-9f86d4e7a719?w=1000",
     title: { shortTitle: "Monitor", longTitle: "24-inch Full HD IPS Monitor" },
     price: { mrp: 12999, cost: 9999, discount: "23%" },
     quantity: 1,
@@ -651,9 +652,9 @@ const products = [
   {
     id: "Product33",
     category: "mobile",
-    url: "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=500",
+    url: "https://media-ik.croma.com/Croma%20Assets/Communication/Mobiles/Images/316737_0_qsbp27.png?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1580910051074-3eb694886505?w=1000",
+      "https://media-ik.croma.com/Croma%20Assets/Communication/Mobiles/Images/316737_0_qsbp27.png?w=1000",
     title: {
       shortTitle: "Nothing Phone",
       longTitle: "Nothing Phone (3) 5G (256 GB) - White",
@@ -670,12 +671,12 @@ const products = [
   {
     id: "Product34",
     category: "mobile",
-    url: "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=500",
+    url: "https://www.maxmovil.com/web/image/product.template/64156/image_1920?unique=4a0e74a?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1605236453806-6ff36851218e?w=1000",
+      "https://www.maxmovil.com/web/image/product.template/64156/image_1920?unique=4a0e74a?w=1000",
     title: {
       shortTitle: "Realme GT",
-      longTitle: "Realme GT 7 Pro 5G (256 GB) - Blue",
+      longTitle: "Realme GT 7 Pro 5G (256 GB) - IceSense Blue",
     },
     price: { mrp: 39999, cost: 36999, discount: "8%" },
     quantity: 1,
@@ -689,9 +690,9 @@ const products = [
   {
     id: "Product35",
     category: "mobile",
-    url: "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=500",
+    url: "https://f.nooncdn.com/p/pzsku/Z1F819895C5E918F02894Z/45/_/1780467410/3db09ae5-47eb-408a-8eef-b70da090886f.jpg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=1000",
+      "https://f.nooncdn.com/p/pzsku/Z1F819895C5E918F02894Z/45/_/1780467410/3db09ae5-47eb-408a-8eef-b70da090886f.jpg?w=1000",
     title: {
       shortTitle: "Redmi Note",
       longTitle: "Redmi Note 14 Pro 5G (256 GB) - Midnight Black",
@@ -720,13 +721,16 @@ const products = [
     description: "Comfortable stretch denim with a modern fit.",
     discount: "Flat 30% off",
     tagline: "Fit that flatters",
+    sections: [
+      "deal-of-the-day"
+    ],
   },
   {
     id: "Product37",
     category: "mobile",
-    url: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=500",
+    url: "https://images.unsplash.com/photo-1751580642554-e8b02b05310d?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?w=1000",
+      "https://images.unsplash.com/photo-1751580642554-e8b02b05310d?w=1000",
     title: {
       shortTitle: "iQOO Neo",
       longTitle: "iQOO Neo 10 5G (256 GB) - Orange",
@@ -740,9 +744,9 @@ const products = [
   {
     id: "Product38",
     category: "mobile",
-    url: "https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=500",
+    url: "https://www.maxmovil.com/web/image/product.template/64430/image_1920?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1512054502232-10a0a035d672?w=1000",
+      "https://www.maxmovil.com/web/image/product.template/64430/image_1920?w=1000",
     title: {
       shortTitle: "Moto Edge",
       longTitle: "Motorola Edge 60 5G (256 GB) - Green",
@@ -756,9 +760,9 @@ const products = [
   {
     id: "Product39",
     category: "mobile",
-    url: "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=500",
+    url: "https://sremporium.odoo.com/web/image/product.template/127/image_1920?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=1000",
+      "https://sremporium.odoo.com/web/image/product.template/127/image_1920?w=1000",
     title: {
       shortTitle: "Vivo V40",
       longTitle: "Vivo V40 5G (256 GB) - Purple",
@@ -775,9 +779,9 @@ const products = [
   {
     id: "Product40",
     category: "mobile",
-    url: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500",
+    url: "https://rukminim2.flixcart.com/image/480/640/xif0q/mobile/y/i/6/-original-imahdpu7wqfgfryp.jpeg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1000",
+      "https://rukminim2.flixcart.com/image/480/640/xif0q/mobile/y/i/6/-original-imahdpu7wqfgfryp.jpeg?w=1000",
     title: { shortTitle: "POCO F7", longTitle: "POCO F7 5G (256 GB) - Black" },
     price: { mrp: 29999, cost: 26999, discount: "10%" },
     quantity: 1,
@@ -791,9 +795,9 @@ const products = [
   {
     id: "Product41",
     category: "mobile",
-    url: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500",
+    url: "https://images.unsplash.com/photo-1773414422122-96165e640180?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=1000",
+      "https://images.unsplash.com/photo-1773414422122-96165e640180?w=1000",
     title: {
       shortTitle: "Xiaomi 15",
       longTitle: "Xiaomi 15 5G (512 GB) - Silver",
@@ -805,14 +809,15 @@ const products = [
     tagline: "Flagship photography",
     sections: [
     "Top Selection",
+    "Top-Deals-On-Accessories"
     ],
   },
   {
     id: "Product42",
     category: "electronics",
-    url: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=500",
+    url: "https://cdns3.thecosmicbyte.com/wp-content/uploads/Artimis-1.jpg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1000",
+      "https://cdns3.thecosmicbyte.com/wp-content/uploads/Artimis-1.jpg?w=1000",
     title: {
       shortTitle: "Keyboard",
       longTitle: "RGB Mechanical Gaming Keyboard",
@@ -829,9 +834,9 @@ const products = [
   {
     id: "Product43",
     category: "electronics",
-    url: "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500",
+    url: "https://images.unsplash.com/photo-1629121291243-7b5e885cce9b?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=1000",
+      "https://images.unsplash.com/photo-1629121291243-7b5e885cce9b?w=1000",
     title: {
       shortTitle: "Mouse",
       longTitle: "Wireless Ergonomic Gaming Mouse",
@@ -843,15 +848,16 @@ const products = [
     tagline: "Precision control",
     sections: [
     "Trending-Offers",
-    "Top-Deals-On-Accessories"
+    "Top-Deals-On-Accessories",
+    "Top Selection"
     ],
   },
   {
     id: "Product45",
     category: "electronics",
-    url: "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=500",
+    url: "https://images.unsplash.com/photo-1636569826709-8e07f6104992?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1498049794561-7780e7231661?w=1000",
+      "https://images.unsplash.com/photo-1636569826709-8e07f6104992?w=1000",
     title: { shortTitle: "Webcam", longTitle: "1080p Full HD USB Webcam" },
     price: { mrp: 3499, cost: 2199, discount: "37%" },
     quantity: 1,
@@ -865,9 +871,9 @@ const products = [
   {
     id: "Product46",
     category: "electronics",
-    url: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500",
+    url: "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=1000",
+      "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=1000",
     title: {
       shortTitle: "Earbuds",
       longTitle: "True Wireless Bluetooth Earbuds with ANC",
@@ -888,9 +894,9 @@ const products = [
   {
     id: "Product47",
     category: "appliance",
-    url: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500",
+    url: "https://images.unsplash.com/photo-1746645297698-306ef29852ca?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=1000",
+      "https://images.unsplash.com/photo-1746645297698-306ef29852ca?w=1000",
     title: {
       shortTitle: "Vacuum Cleaner",
       longTitle: "Portable Handheld Vacuum Cleaner",
@@ -904,9 +910,9 @@ const products = [
   {
     id: "Product48",
     category: "appliance",
-    url: "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=500",
+    url: "https://images.unsplash.com/photo-1685131701280-d397c3de43db?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1586201375761-83865001e31c?w=1000",
+      "https://images.unsplash.com/photo-1685131701280-d397c3de43db?w=1000",
     title: {
       shortTitle: "Juicer",
       longTitle: "Electric Juicer Mixer Blender 500W",
@@ -923,9 +929,9 @@ const products = [
   {
     id: "Product49",
     category: "appliance",
-    url: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=500",
+    url: "https://media.tatacroma.com/Croma%20Assets/Small%20Appliances/Water%20Purifier/Images/311502_gkiuqq.png?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=1000",
+      "https://media.tatacroma.com/Croma%20Assets/Small%20Appliances/Water%20Purifier/Images/311502_gkiuqq.png?w=1000",
     title: {
       shortTitle: "Water Purifier",
       longTitle: "RO + UV Water Purifier 7L",
@@ -942,9 +948,9 @@ const products = [
   {
     id: "Product50",
     category: "appliance",
-    url: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=500",
+    url: "https://images.unsplash.com/photo-1662221156544-3355c817ed74?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=1000",
+      "https://images.unsplash.com/photo-1662221156544-3355c817ed74?w=1000",
     title: {
       shortTitle: "Steam Iron",
       longTitle: "1200W Non-Stick Steam Iron",
@@ -958,9 +964,9 @@ const products = [
   {
     id: "Product51",
     category: "appliance",
-    url: "https://images.unsplash.com/photo-1585515656973-5b3d9c2f4b8b?w=500",
+    url: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1585515656973-5b3d9c2f4b8b?w=1000",
+      "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=1000",
     title: {
       shortTitle: "Coffee Maker",
       longTitle: "Automatic Drip Coffee Maker 1.2L",
@@ -1051,14 +1057,15 @@ const products = [
     tagline: "Carry with confidence",
     sections: [
     "Suggesting-items",
+    "deal-of-the-day"
     ],
   },
   {
     id: "Product57",
     category: "beauty",
-    url: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=500",
+    url: "https://images.unsplash.com/photo-1632221522690-6a0c04bf6f85?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1000",
+      "https://images.unsplash.com/photo-1632221522690-6a0c04bf6f85?w=1000",
     title: {
       shortTitle: "Body Lotion",
       longTitle: "Deep Nourishing Body Lotion 400ml",
@@ -1077,9 +1084,9 @@ const products = [
   {
     id: "Product58",
     category: "beauty",
-    url: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=500",
+    url: "https://media6.ppl-media.com/tr:h-750,w-750,c-at_max,dpr-2,q-40/static/img/product/270752/pilgrim-retinol-anti-ageing-night-repair-cream-with-vitamin-c-and-hyaluronic-acid-50g-99_1_display_1765000661_9001841a.jpg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=1000",
+      "https://media6.ppl-media.com/tr:h-750,w-750,c-at_max,dpr-2,q-40/static/img/product/270752/pilgrim-retinol-anti-ageing-night-repair-cream-with-vitamin-c-and-hyaluronic-acid-50g-99_1_display_1765000661_9001841a.jpg?w=1000",
     title: {
       shortTitle: "Night Cream",
       longTitle: "Retinol Repair Night Cream 50g",
@@ -1093,9 +1100,9 @@ const products = [
   {
     id: "Product59",
     category: "beauty",
-    url: "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=500",
+    url: "https://m.media-amazon.com/images/I/61YX6oeq4NL.jpg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=1000",
+      "https://m.media-amazon.com/images/I/61YX6oeq4NL.jpg?w=1000",
     title: {
       shortTitle: "Face Mask",
       longTitle: "Charcoal Detox Face Mask 100g",
@@ -1109,9 +1116,9 @@ const products = [
   {
     id: "Product60",
     category: "beauty",
-    url: "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=500",
+    url: "https://www.bbassets.com/media/uploads/p/l/40284975_2-carlton-london-escape-eau-de-parfum-long-lasting-for-women.jpg?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1612817288484-6f916006741a?w=1000",
+      "https://www.bbassets.com/media/uploads/p/l/40284975_2-carlton-london-escape-eau-de-parfum-long-lasting-for-women.jpg?w=1000",
     title: {
       shortTitle: "Perfume",
       longTitle: "Long Lasting Eau De Parfum 100ml",
@@ -1128,9 +1135,9 @@ const products = [
   {
     id: "Product61",
     category: "beauty",
-    url: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=500",
+    url: "https://img.kwcdn.com/product/fancy/10338921-547e-486c-8192-f446151cec75.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp?w=500",
     detailUrl:
-      "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=1000",
+      "https://img.kwcdn.com/product/fancy/10338921-547e-486c-8192-f446151cec75.jpg?imageMogr2/auto-orient%7CimageView2/2/w/800/q/70/format/webp?w=1000",
     title: {
       shortTitle: "Hair Oil",
       longTitle: "Onion & Argan Hair Oil 200ml",
