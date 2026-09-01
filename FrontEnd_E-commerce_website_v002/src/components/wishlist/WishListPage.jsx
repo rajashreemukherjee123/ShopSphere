@@ -3,9 +3,9 @@ import { Box,Card,CardMedia,CardContent,Typography,Button } from '@mui/material'
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, useParams } from 'react-router-dom';
 import {getWishlist} from "../../redux/actions/wishListAction";
-import { addToCartAction } from '../../redux/actions/cartAction';
+import { addToCart } from '../../redux/slices/cartSlice';
 import { removeWishList } from '../../redux/actions/wishListAction';
-import { getProductDetails } from '../../redux/actions/productAction';
+import { getProductDetails } from '../../redux/slices/productSlice';
 import { toast } from "react-toastify";
 import LoginDialog from "../login/LoginDialog";
 
@@ -254,7 +254,8 @@ const WishListPage = () => {
                     }
                   }} onClick={async(e)=>{
                       e.stopPropagation();
-                      await dispatch(addToCartAction(item.productId?._id,1))
+                      await dispatch(addToCart({productId: item.productId?._id,
+                                                quantity:1}));
                       dispatch(removeWishList(item.productId?._id))
                       toast.success("Product successfully added from Cart");
                   }}>

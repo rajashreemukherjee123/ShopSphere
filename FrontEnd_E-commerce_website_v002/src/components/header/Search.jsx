@@ -4,7 +4,7 @@ import { InputBase, Box, styled, List, ListItem } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getProducts } from '../../redux/actions/productAction'
+import { getProducts } from '../../redux/slices/productSlice';
 
 import {Link} from 'react-router-dom';
 
@@ -66,7 +66,7 @@ const Search = () => {
 
     const [text,setText] = useState("");
 
-    const {products} = useSelector(state => state.getProducts);
+    const {products} = useSelector(state => state.productsData);
     const dispatch = useDispatch();
 
     useEffect(()=>{

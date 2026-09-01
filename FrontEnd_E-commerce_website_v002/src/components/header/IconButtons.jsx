@@ -14,7 +14,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import WishList from '../wishlist/WishListPage';
 import { getWishlist } from '../../redux/actions/wishListAction';
-import { getCartDetails } from '../../redux/actions/cartAction';
+import { getCart } from '../../redux/slices/cartSlice';
 
 
 
@@ -77,7 +77,7 @@ const IconButtons = ({ mobileIconView }) => {
 
     useEffect(()=>{
         if(account){
-            dispatch(getCartDetails())
+            dispatch(getCart())
             dispatch(getWishlist())
         }
     },[account,dispatch])

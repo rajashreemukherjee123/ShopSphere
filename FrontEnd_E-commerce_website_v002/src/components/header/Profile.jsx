@@ -3,7 +3,7 @@ import {Box,Typography,Menu,MenuItem,Divider} from '@mui/material';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 import { useDispatch } from 'react-redux';
 import { WISH_LIST_RESET } from '../../redux/constants/wishListConstant';
-import { CART_RESET } from '../../redux/constants/cartConstant';
+import { resetCart } from '../../redux/slices/cartSlice';
 import { USER_LOGOUT } from '../../redux/constants/userConstant';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
@@ -35,7 +35,7 @@ const Profile = ({account, setAccount, mobileIconView }) => {
 
         dispatch({type: USER_LOGOUT});
         dispatch({type: WISH_LIST_RESET});
-        dispatch({type: CART_RESET});
+        dispatch(resetCart());
 
         handleClose();
     };

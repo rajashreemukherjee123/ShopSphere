@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux';
 
 import WishlistButton from '../button/WishlistButton';
 
-import { addToCartAction } from '../../redux/actions/cartAction';
+import { addToCart } from '../../redux/slices/cartSlice';
 import useRazorpay from '../../hooks/useRazorpay'; // centralized hook
 import { toast } from 'react-toastify';
 
@@ -44,7 +44,7 @@ const ActionItem = ({ product }) => {
         if(!token){
             toast.info("Please login to add product to your cart");
         }else if(token && product._id ){
-            await dispatch(addToCartAction(product._id, quantity));
+            await dispatch(addToCart({productId: product._id, quantity})).unwrap();
             toast.success("Product successfully added from Cart");
         }
         

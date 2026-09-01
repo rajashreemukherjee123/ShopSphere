@@ -2,8 +2,8 @@ import React,{useEffect} from 'react'
 import { Box,Card,CardMedia,CardContent,Typography,Button } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams,  useNavigate } from 'react-router-dom';
-import {getProductSection} from '../../redux/actions/productAction'
-import {addToCartAction} from '../../redux/actions/cartAction'
+import {getProductSection} from '../../redux/slices/productSlice'
+import {addToCart} from '../../redux/slices/cartSlice';
 import WishlistButton from '../button/WishlistButton';
 import { toast } from "react-toastify";
 
@@ -13,10 +13,10 @@ const SectionsPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const {section:sectionData, loading, error} = useSelector(
-        (state)=> state.getProductSection
+    const {section:sectionData, sectionLoading, sectionError} = useSelector(
+        (state)=> state.productsData
     );
-    const products = sectionData[section] || []
+    const products = sectionData[section] || [];
 
     useEffect(()=>{
       if(section){
@@ -33,7 +33,7 @@ const SectionsPage = () => {
       if(!token){
         toast.info("Please login to add product to your cart")
       }else{
-        dispatch(addToCartAction(productId, 1));
+        dispatch(addToCart({productId, quantity: 1}));
         toast.success("Product successfully added from Cart");
       }
     }
@@ -52,16 +52,16 @@ const SectionsPage = () => {
           }}
         >
     
-          {loading && <Typography>Loading...</Typography>}
+          {sectionLoading && <Typography>Loading...</Typography>}
     
-          {error && (
+          {sectionError && (
             <Typography color="error">
-              {error}
+              {sectionError}
             </Typography>
           )}
     
           {
-            !loading && products.map((item)=>{
+            !sectionLoading && products.map((item)=>{
               return (
                 <Card key={item._id}
                   onClick={()=> navigate(`/product/${item.id}`)}

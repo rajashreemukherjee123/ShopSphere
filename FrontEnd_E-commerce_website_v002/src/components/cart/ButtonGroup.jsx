@@ -1,7 +1,7 @@
 import React from 'react'
 import { ButtonGroup, Button, styled } from '@mui/material'
 import { useDispatch } from 'react-redux';
-import { updateCartQtyAction } from '../../redux/actions/cartAction'
+import { updateCartQuantity } from '../../redux/slices/cartSlice'
 
 const Component = styled(ButtonGroup)`
     margin-top: 30px;
@@ -17,7 +17,7 @@ const GroupButton = ({ item }) => {
     const handleIncrement = () => {
         const newQty = item.quantity + 1;
         
-        dispatch(updateCartQtyAction(item.productId._id, newQty));
+        dispatch(updateCartQuantity({productId:item.productId._id, quantity:newQty}));
     };
 
     const handleDecrement = () => {

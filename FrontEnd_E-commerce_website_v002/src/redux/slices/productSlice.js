@@ -104,7 +104,7 @@ const productSlice = createSlice({
         resetProductSection: (state)=>{
             state.section = {};
             state.sectionLoading = false;
-            state.categoryError = null;
+            state.sectionError = null;
         }
     },
 

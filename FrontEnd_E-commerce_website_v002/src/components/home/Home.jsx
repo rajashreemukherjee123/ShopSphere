@@ -8,7 +8,7 @@ import MidSection from './MidSection';
 import {Box, styled} from '@mui/material'
 
 
-import { getProducts} from '../../redux/actions/productAction';
+import { getProducts} from '../../redux/slices/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const Home = () => {
 
-  const {products, loading} = useSelector(state => state.getProducts)
+  const {products} = useSelector(state => state.productsData)
   
   console.log(products);
 
@@ -37,7 +37,7 @@ const Home = () => {
                                                           timer={true}
                                                        /> 
       } */}
-       <MidSlide 
+      <MidSlide 
                                                           title="Deal of the Day"
                                                           section="deal-of-the-day" 
                                                           timer={true}

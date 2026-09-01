@@ -7,7 +7,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import { Box, Button, Divider, styled, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import { getProductSection } from "../../redux/actions/productAction";
+import { getProductSection } from "../../redux/slices/productSlice";
 
 const Carousel = CarouselLib.default || CarouselLib;
 
@@ -65,9 +65,9 @@ const Slide = ({ title, timer, section }) => {
 
   const {
     section: sectionData,
-    loading,
-    error,
-  } = useSelector((state) => state.getProductSection);
+    sectionLoading,
+    sectionError,
+  } = useSelector((state) => state.productsData);
 
   const products = sectionData[section] || [];
 
@@ -77,12 +77,12 @@ const Slide = ({ title, timer, section }) => {
     }
   }, [dispatch, section]);
 
-  // if(loading){
-  //     return <Typography>Loading...</Typography>
-  // }
+  if(sectionLoading){
+      return <Typography>sectionLoading...</Typography>
+  }
 
-  if (error) {
-    return <Typography color="error">{error}</Typography>;
+  if (sectionError) {
+    return <Typography color="error">{sectionError}</Typography>;
   }
 
   if (!products || products.length === 0) {

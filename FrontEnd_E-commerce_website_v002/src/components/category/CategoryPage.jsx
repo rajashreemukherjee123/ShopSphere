@@ -3,8 +3,8 @@ import { Box,Card,CardMedia,CardContent,Typography,Button } from '@mui/material'
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from 'react-router-dom';
 import {useEffect} from 'react'
-import { getProductCategory } from "../../redux/actions/productAction";
-import { addToCartAction } from "../../redux/actions/cartAction";
+import { getProductCategory } from "../../redux/slices/productSlice";
+import { addToCart } from "../../redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -22,8 +22,8 @@ const CategoryPage = () => {
 
   
   // ---------------- Category products ----------------
-  const { products, loading, error } = useSelector(
-    (state)=> state.getProductCategory
+  const { categoryProducts, categoryLoading, categoryError } = useSelector(
+    (state)=> state.productsData
   );
 
   useEffect(()=>{
@@ -38,7 +38,7 @@ const CategoryPage = () => {
     if(!token){
       toast.info("Please login to add product to your cart")
     }else{
-      dispatch(addToCartAction(productId, 1))
+      dispatch(addToCart({productId, quantity:1 }))
       toast.success("Product successfully added from Cart")
     }
     
@@ -61,16 +61,16 @@ const CategoryPage = () => {
       }}
     >
 
-      {loading && <Typography>Loading...</Typography>}
+      {categoryLoading && <Typography>Loading...</Typography>}
 
-      {error && (
+      {categoryError && (
         <Typography color="error">
           {error}
         </Typography>
       )}
 
       {
-        !loading && products.map((item)=>{
+        !categoryLoading && categoryProducts.map((item)=>{
           return (
             <Card key={item._id}
               onClick={()=> navigate(`/product/${item.id}`)}

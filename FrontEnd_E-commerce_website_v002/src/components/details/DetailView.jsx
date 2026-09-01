@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom';
-import { getProductDetails } from '../../redux/actions/productAction';
+import { getProductDetails } from '../../redux/slices/productSlice';
 import { Box, styled } from '@mui/material'
 
 import ActionItem from './ActionItem';
@@ -50,8 +50,8 @@ const DetailView = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
 
-    const { loading, product } = useSelector(
-        state => state.getProductDetails
+    const { detailsLoading, product } = useSelector(
+        state => state.productsData
     );
 
     useEffect(() => {
