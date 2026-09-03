@@ -1,6 +1,6 @@
 import "./App.css";
 import { Box } from "@mui/material";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer,toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 ////////////////
@@ -20,8 +20,8 @@ import SectionsPage from "./components/sections/SectionsPage";
 import WishListPage from "./components/wishlist/WishListPage";
 
 import { USER_LOGOUT } from "./redux/constants/userConstant";
-import { CART_RESET } from "./redux/constants/cartConstant";
-import { WISH_LIST_RESET } from "./redux/constants/wishListConstant";
+import { resetCart } from "./redux/slices/cartSlice";
+import { resetWishList } from "./redux/slices/wishListSlice";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -35,6 +35,7 @@ const App = () => {
 
     if (!token && !userName) {
       setAccount("");
+      return;
     }
     try {
       const decodedToken = jwtDecode(token);
@@ -49,13 +50,9 @@ const App = () => {
           type: USER_LOGOUT,
         });
 
-        dispatch({
-          type: CART_RESET,
-        });
+        dispatch(resetCart());
 
-        dispatch({
-          type: WISH_LIST_RESET,
-        });
+        dispatch(resetWishList());
 
         toast.info("Your session has expired. Please login again.");
 
@@ -76,13 +73,9 @@ const App = () => {
         type: USER_LOGOUT,
       });
 
-      dispatch({
-        type: CART_RESET,
-      });
+      dispatch(resetCart());
 
-      dispatch({
-        type: WISH_LIST_RESET,
-      });
+      dispatch(resetWishList());
     }
   }, [setAccount, dispatch]);
 
@@ -95,31 +88,30 @@ const App = () => {
 
       localStorage.removeItem('token');
       localStorage.removeItem('userName');
+      localStorage.removeItem("userEmail");
       setAccount("");
 
       dispatch({
         type: USER_LOGOUT,
       });
 
-      dispatch({
-        type: CART_RESET,
-      });
+      dispatch(resetCart());
 
-      dispatch({
-        type: WISH_LIST_RESET,
-      });
+      dispatch(resetWishList());
 
       toast.info(
         "Your session has expired. Please login again."
       );
+    };
 
-
-      window.addEventListener(
+    window.addEventListener(
         "tokenExpired",
         handleTokenExpired
       );
 
-    };
+    return ()=>{
+      window.removeEventListener("tokenExpired", handleTokenExpired);
+    }
   },[setAccount, dispatch]);
 
   return (

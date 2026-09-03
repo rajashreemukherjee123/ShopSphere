@@ -50,6 +50,18 @@ export const updateCartQuantity = createAsyncThunk("cart/updateCartQuantity", as
 });
 
 
+// --------------------- CLEAR CART -----------------------
+export const clearCart = createAsyncThunk("cart/clearCart", async(_,{rejectWithValue})=>{
+    try{
+        const {data} = await axios.delete("/cart/clear");
+        return data;
+
+    }catch(err){
+        return rejectWithValue(err.response?.data?.message || err.message);
+    }
+})
+
+
 
 
 
@@ -68,12 +80,7 @@ const cartSlice = createSlice({
     initialState,
 
     reducers: {
-        clearCart: (state)=>{
-            state.cartItems = [];
-            state.loading = false;
-            state.error = null;
-        },
-
+    
         resetCart: (state)=>{
             state.cartItems = [];
             state.loading = false;
@@ -157,13 +164,32 @@ const cartSlice = createSlice({
             .addCase(updateCartQuantity.rejected, (state, action)=>{
                 state.loading = false;
                 state.error = action.payload;
+            });
+
+
+        // clear cart
+        builder
+            .addCase(clearCart.pending, (state)=>{
+                state.loading = true;
+                state.error = null;
+            })
+
+            .addCase(clearCart.fulfilled, (state)=>{
+                state.loading = false;
+                state.cartItems = [];
+                state.error = null;
+            })
+
+            .addCase(clearCart.rejected, (state,action)=>{
+                state.loading = false;
+                state.error = action.payload;
             })
     }
 });
 
 
 // ============ EXPORT ACTION ===================
-export const {clearCart, resetCart} = cartSlice.actions;
+export const { resetCart } = cartSlice.actions;
 
 
 // ============ EXPORT REDUCER ===================

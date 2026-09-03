@@ -8,30 +8,39 @@ const addToWishList = async(req,res)=>{
         let userId = req.user.user_id;
         let productId = req.body.productId;
 
-        let wishListObj = await wishList.findOne({ userId: userId })
+        let wishListObj = await wishList.findOne({ userId })
         if(! wishListObj){
             wishListObj = await wishList.create({
-                userId : userId,
+                userId,
                 items: [{
-                    productId : productId
+                    productId
                 }]
             })
 
-            wishListObj = await wishListObj.populate("items.productId");
+            await wishListObj.populate("items.productId");
             return res.status(200).json({message : "Product added to wishlist",wishList: wishListObj});
         }
+
+        // check duplicate
         const alradyExist =  wishListObj.items.some((item)=>{
-            return item.productId.toString() === productId
-        })
+            const itemProductId = 
+                item.productId?._id?.toString() ?? item.productId?.toString()
+            
+            return itemProductId  === productId.toString();
+        });
+
         if(alradyExist){
             return res.status(400).json({message: "This product is alrady exist in WishList"})
         }else{
             wishListObj.items.push({
-                productId: productId
+                productId
             })
 
             await wishListObj.save();
-            res.status(200).json({message : "Product added to wishlist",wishList: wishListObj})
+
+            await wishListObj.populate("items.productId");
+
+            return res.status(200).json({message : "Product added to wishlist",wishList: wishListObj});
         }
 
     }catch(err){

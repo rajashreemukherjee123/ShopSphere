@@ -23,7 +23,7 @@ const GroupButton = ({ item }) => {
     const handleDecrement = () => {
         if (item.quantity > 1) {
             const newQty = item.quantity - 1;
-            dispatch(updateCartQtyAction(item.productId._id, newQty));
+            dispatch(updateCartQuantity({productId:item.productId._id, quantity:newQty}));
         }
     };
 

@@ -3,7 +3,7 @@ import { IconButton } from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToWishList, removeWishList } from '../../redux/actions/wishListAction';
+import { addToWishList, removeWishList } from '../../redux/slices/wishListSlice';
 import { toast } from 'react-toastify';
 
 
@@ -33,29 +33,32 @@ const WishlistButton = ({productId, sx }) => {
           return;
         }
     
-        if(isWishListed){
-          await dispatch(removeWishList(productId));
-          
-          toast.info(
-            "Product removed from wishlist"
-          );
+        try{
+            if(isWishListed){
+            await dispatch(removeWishList(productId)).unwrap();
+            
+            toast.info(
+              "Product removed from wishlist"
+            );
 
-        }else{
-          await dispatch(addToWishList(productId));
-          toast.success(
-            "Product added from wishlist ❤️"
-          )
-          
+          }else{
+            await dispatch(addToWishList(productId)).unwrap();
+            toast.success(
+              "Product added to wishlist ❤️"
+            )
+            
+          }
+        }catch(err){
+          toast.error(err || "Something went wrong");
         }
+        
         
       };
 
 
       
     
-    //   useEffect(()=>{
-    //     dispatch(getWishlist());
-    //   }, [dispatch]);
+   
   return (
     <>
       <IconButton onClick={handleWishlist} sx={{

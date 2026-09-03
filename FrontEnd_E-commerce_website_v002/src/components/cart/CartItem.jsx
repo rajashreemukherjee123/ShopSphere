@@ -6,8 +6,8 @@ import { addEllipsis } from '../../utils/common-utils'
 
 import  ButtonGroup from './ButtonGroup';
 
-import { removeFromCartAction } from '../../redux/actions/cartAction';
-import {addToWishList} from "../../redux/actions/wishListAction"
+import { removeFromCart } from '../../redux/slices/cartSlice';
+import {addToWishList} from "../../redux/slices/wishListSlice";
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
@@ -36,15 +36,18 @@ const Remove = styled(Button)`
 
 
 const CartItem = ({item}) => {
+
+    const dispatch = useDispatch();
+
+    const [openRemoveDialog, setOpenRemoveDialog] = useState(false);
+    
     if (!item?.productId){
         return null;
     } 
 
     const product = item.productId; 
 
-    const dispatch = useDispatch();
-
-    const [openRemoveDialog, setOpenRemoveDialog] = useState(false);
+    
 
     // Open Dialog
     const handleRemoveClick = ()=>{
@@ -56,13 +59,13 @@ const CartItem = ({item}) => {
         setOpenRemoveDialog(false);
     }
 
-    if (!product) return null; // Safety check
+    
 
     
     // Remove Dialog
     const removeItemFromCart = async() =>{
         try{
-            await dispatch(removeFromCartAction(product._id));
+            await dispatch(removeFromCart(product._id)).unwrap();
 
             setOpenRemoveDialog(false);
 
@@ -74,12 +77,12 @@ const CartItem = ({item}) => {
     }
 
 
-    // Move oriduct to wishlist
+    // Move product to wishlist
     const moveToWishlist = async()=>{
         try{
-            await dispatch(addToWishList(product._id));
+            await dispatch(addToWishList(product._id)).unwrap();
 
-            await dispatch(removeFromCartAction(product._id));
+            await dispatch(removeFromCart(product._id)).unwrap();
         
             setOpenRemoveDialog(false);
 

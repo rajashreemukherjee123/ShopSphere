@@ -12,8 +12,8 @@ import LoginDialog from '../login/LoginDialog';
 import Profile from './Profile';
 import { useSelector, useDispatch } from 'react-redux';
 
-import WishList from '../wishlist/WishListPage';
-import { getWishlist } from '../../redux/actions/wishListAction';
+// import WishList from '../wishlist/WishListPage';
+import { getWishlist } from '../../redux/slices/wishListSlice';
 import { getCart } from '../../redux/slices/cartSlice';
 
 
@@ -62,8 +62,8 @@ const IconButtons = ({ mobileIconView }) => {
     const openDialog = () => setOpen(true);
 
     
-    const token = localStorage.getItem("token");
-    const isLoggedIn = !!token;
+    // const token = localStorage.getItem("token");
+    // const isLoggedIn = !!token;
 
     const handleCartClick = () => {
        navigate("/cart");

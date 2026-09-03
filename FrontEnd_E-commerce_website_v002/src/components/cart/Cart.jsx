@@ -1,7 +1,7 @@
 import { Typography, Box, styled, Button } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getCartDetails } from "../../redux/actions/cartAction";
+import { getCart, clearCart } from "../../redux/slices/cartSlice";
 import { useNavigate } from "react-router-dom";
 
 import CartItem from "./CartItem";
@@ -10,7 +10,9 @@ import useRazorpay from "../../hooks/useRazorpay"; // centralized hook
 
 import LoginDialog from "../login/LoginDialog";
 
-import * as actionType from "../../redux/constants/cartConstant";
+import { toast } from "react-toastify";
+
+
 
 const Container = styled(Box)(({ theme }) => ({
   padding: "30px 135px",
@@ -73,7 +75,7 @@ const Cart = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      dispatch(getCartDetails());
+      dispatch(getCart());
     }
   }, [dispatch, isLoggedIn]);
 
@@ -158,14 +160,18 @@ const Cart = () => {
     initiatePayment({
       amount: getTotalAmount(),
       productName: `Cart Order (${cartItems.filter((i) => i.productId).length} items)`,
-      onSuccess: (paymentId) => {
-        // Redux state cart clear
-        dispatch({ type: actionType.CART_CLEAR });
-        alert(`Order Placed Successfully! 🎉`);
-        navigate("/");
+      onSuccess: async(paymentId) => {
+        try{
+          await dispatch(clearCart()).unwrap();
+          toast.success(`Order Placed Successfully! 🎉`);
+          navigate("/");
+
+        }catch(err){
+          console.log("Cart clear failed:", err);
+        }
       },
       onFailure: () => {
-        console.log("Payment failed");
+        toast.error("Payment failed. Please try again.");
       },
     });
   };
