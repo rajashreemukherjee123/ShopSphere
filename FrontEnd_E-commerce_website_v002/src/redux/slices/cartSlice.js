@@ -69,6 +69,7 @@ export const clearCart = createAsyncThunk("cart/clearCart", async(_,{rejectWithV
 const initialState = {
     cartItems: [],
     loading: false,
+    updating: false,
     error: null
 };
 
@@ -151,18 +152,18 @@ const cartSlice = createSlice({
         // update quantity
         builder
             .addCase(updateCartQuantity.pending, (state)=>{
-                state.loading = true;
+                state.updating = true;
                 state.error = null;
             })
 
             .addCase(updateCartQuantity.fulfilled, (state, action)=>{
-                state.loading = false;
+                state.updating = false;
                 state.cartItems = action.payload?.items || [];
                 state.error = null;
             })
 
             .addCase(updateCartQuantity.rejected, (state, action)=>{
-                state.loading = false;
+                state.updating = false;
                 state.error = action.payload;
             });
 

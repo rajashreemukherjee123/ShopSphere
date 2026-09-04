@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-import { AppBar, Toolbar,IconButton, Box, Drawer, List,Divider, ListItem, styled } from '@mui/material';
+import { AppBar, Toolbar,IconButton, Box, Drawer, List,Divider, ListItem,  styled } from '@mui/material';
 import OneStop_Logo from '../../assets/OneStop_Logo.png';
 
 
@@ -46,7 +46,7 @@ const Header = () => {
     const list = ()=>(
         <Box style={{width: 200 }}>
             <List>
-                <ListItem button sx={{ justifyContent: 'center', mb: 2}}>
+                <ListItem  sx={{ justifyContent: 'center', mb: 2}}>
                     <Box sx={{ display:'flex', gap: 2}}>
                         <IconButtons mobileIconView={true}/>
                     </Box>

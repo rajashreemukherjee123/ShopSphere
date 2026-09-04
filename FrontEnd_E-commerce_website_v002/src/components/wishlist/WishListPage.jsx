@@ -197,6 +197,7 @@ const WishListPage = () => {
         wishList?.items?.map((item) => {
           return (
             <Card
+              key={item._id}
               sx={{
                 display: "flex",
                 height: "100%",

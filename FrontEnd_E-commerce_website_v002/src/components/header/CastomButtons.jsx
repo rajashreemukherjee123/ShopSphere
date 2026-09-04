@@ -7,7 +7,9 @@ import { NavLink } from 'react-router-dom'
 
 
 
-const ButtonCastom = styled(Box)(({ theme, mobileView }) => ({
+const ButtonCastom = styled(Box, {
+  shouldForwardProp: (prop) => prop !== "mobileView",
+})(({ theme, mobileView }) => ({
     display: 'flex',
     gap: '32px',
     alignItems: 'center',
