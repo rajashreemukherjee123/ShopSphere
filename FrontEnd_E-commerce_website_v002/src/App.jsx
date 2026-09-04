@@ -4,11 +4,11 @@ import { ToastContainer,toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 ////////////////
-import React, { useEffect, useContext } from "react";
+import React, { useEffect } from "react";
 import { jwtDecode } from "jwt-decode";
-import { DataContext } from "./context/DataProvider";
 import { useDispatch } from "react-redux";
-import { USER_LOGIN_SUCCESS } from "./redux/constants/userConstant";
+
+import { loginSuccess, logout } from "./redux/slices/userSlice";
 
 // component
 import Header from "./components/header/Header";
@@ -19,22 +19,23 @@ import CategoryPage from "./components/category/CategoryPage";
 import SectionsPage from "./components/sections/SectionsPage";
 import WishListPage from "./components/wishlist/WishListPage";
 
-import { USER_LOGOUT } from "./redux/constants/userConstant";
+
 import { resetCart } from "./redux/slices/cartSlice";
 import { resetWishList } from "./redux/slices/wishListSlice";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
-  const { setAccount } = useContext(DataContext);
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userName = localStorage.getItem("userName");
+    const userEmail = localStorage.getItem("userEmail");
 
-    if (!token && !userName) {
-      setAccount("");
+    if (!token) {
+      dispatch(logout());
       return;
     }
     try {
@@ -44,11 +45,10 @@ const App = () => {
       if (decodedToken.exp && decodedToken.exp < currentTime) {
         localStorage.removeItem("token");
         localStorage.removeItem("userName");
-        setAccount("");
+        localStorage.removeItem("userEmail");
+        
 
-        dispatch({
-          type: USER_LOGOUT,
-        });
+        dispatch(logout());
 
         dispatch(resetCart());
 
@@ -57,27 +57,28 @@ const App = () => {
         toast.info("Your session has expired. Please login again.");
 
         return;
-      } else {
-        setAccount(userName);
-        dispatch({
-          type: USER_LOGIN_SUCCESS,
-          payload: { token, name: userName },
-        });
-      }
+      } 
+
+      dispatch(loginSuccess({
+        token,
+        name: userName,
+        email: userEmail
+      }));
+
     } catch (error) {
+
       localStorage.removeItem("token");
       localStorage.removeItem("userName");
-      setAccount("");
+      localStorage.removeItem("userEmail");
+      
 
-      dispatch({
-        type: USER_LOGOUT,
-      });
+      dispatch(logout());
 
       dispatch(resetCart());
 
       dispatch(resetWishList());
     }
-  }, [setAccount, dispatch]);
+  }, [dispatch]);
 
 
   // For handle token expiry while user is using the website
@@ -89,11 +90,9 @@ const App = () => {
       localStorage.removeItem('token');
       localStorage.removeItem('userName');
       localStorage.removeItem("userEmail");
-      setAccount("");
+      
 
-      dispatch({
-        type: USER_LOGOUT,
-      });
+      dispatch(logout());
 
       dispatch(resetCart());
 
@@ -112,7 +111,7 @@ const App = () => {
     return ()=>{
       window.removeEventListener("tokenExpired", handleTokenExpired);
     }
-  },[setAccount, dispatch]);
+  },[dispatch]);
 
   return (
     <>

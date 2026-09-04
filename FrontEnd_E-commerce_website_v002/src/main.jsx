@@ -5,14 +5,14 @@ import App from './App.jsx'
 
 import {Provider} from "react-redux";
 import Store2 from './redux/Store2.js';
-import DataProvider from './context/DataProvider';
+
 
 createRoot(document.getElementById('root')).render(
   <Provider store={Store2}>
-    <DataProvider>
+    
     <StrictMode>
       <App />
     </StrictMode>
-    </DataProvider>
+    
   </Provider>
 )

@@ -56,7 +56,7 @@ const ActionItem = ({ product }) => {
             amount: product.price.cost,
             productName: product.title.shortTitle,
             onSuccess: (paymentId) => {
-                alert(`Payment Successful!  ID: ${paymentId}`);
+                toast.success(`Payment Successful!`);
                 navigate('/');
             },
             onFailure: () => {

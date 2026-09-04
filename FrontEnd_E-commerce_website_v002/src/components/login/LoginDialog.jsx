@@ -1,16 +1,19 @@
 
-import React, { useState, useContext } from 'react'
+import React, { useState } from 'react'
 import { Box, Button, Dialog, TextField, Typography, FormControlLabel, IconButton, InputAdornment, Checkbox, Link, styled } from '@mui/material'
  
 import { authenticatesSignup, authenticatesLogin } from '../../service/api';
-import { DataContext } from '../../context/DataProvider';
+
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../redux/slices/userSlice";
  
+
 // Eye Icons
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import { toast } from 'react-toastify';
  
-import { useDispatch } from "react-redux";
-import { USER_LOGIN_SUCCESS } from "../../redux/constants/userConstant";
+
  
 // Img URL
 const signupImg = 'https://plus.unsplash.com/premium_photo-1683143646216-83a17d6f8e84?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D';
@@ -82,7 +85,6 @@ const LoginDialog = ({ open, setOpen }) => {
     const [account, toggleAccount] = useState(accountInitialValue.login);
     const [showPassword, setShowPassword] = useState(false);
     const [signup, setSignup] = useState(signupInitialValues);
-    const { setAccount } = useContext(DataContext);
     const [login, setLogin] = useState(loginInitialValues);
     const [error, setError] = useState(false);
  
@@ -132,33 +134,40 @@ const LoginDialog = ({ open, setOpen }) => {
  
    
     const loginBtn = async () => {
-        let response = await authenticatesLogin(login);
-        console.log("Full Backend Response:", response);
- 
-        if (response.status === 200) {
-            handleClose(); // dialog close
- 
-            const name = response.data.loginuser?.name;
-            setAccount(name);
-            
-            const email = response.data.loginuser?.email;
- 
-            const userData = {
-                token: response.data.token,
-                name: name,
-                email: email
-            };
- 
-            localStorage.setItem("token", response.data.token);
-            localStorage.setItem("userName", name);
-            localStorage.setItem("userEmail", email)
- 
-            dispatch({
-                type: USER_LOGIN_SUCCESS,
-                payload: userData
-            });
- 
-        } else {
+        try{
+            const response = await authenticatesLogin(login);
+            console.log("Full Backend Response:", response);
+
+            if(response.status === 200){
+                const name = response.data.loginuser?.name;
+                const email = response.data.loginuser?.email;
+                const token = response.data.token;
+
+                const userData = {
+                    token,
+                    name,
+                    email
+                };
+
+                // localstorage
+                localStorage.setItem("token", token);
+                localStorage.setItem("userName", name);
+                localStorage.setItem("userEmail", email);
+
+
+                // redux 
+                dispatch(loginSuccess(userData));
+
+                handleClose();
+
+                toast.success("Login successful!");
+
+            }else {
+                setError(true);
+            }
+
+        }catch(err){
+            console.log("Login error", err);
             setError(true);
         }
     }

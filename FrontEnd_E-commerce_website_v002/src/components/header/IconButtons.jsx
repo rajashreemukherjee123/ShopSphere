@@ -1,7 +1,6 @@
 
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Badge, Box, IconButton, styled } from '@mui/material';
-import { DataContext } from '../../context/DataProvider';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -10,9 +9,9 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 
 import LoginDialog from '../login/LoginDialog';
 import Profile from './Profile';
+
 import { useSelector, useDispatch } from 'react-redux';
 
-// import WishList from '../wishlist/WishListPage';
 import { getWishlist } from '../../redux/slices/wishListSlice';
 import { getCart } from '../../redux/slices/cartSlice';
 
@@ -50,8 +49,12 @@ const IconButtons = ({ mobileIconView }) => {
 
     const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
-    const { account, setAccount } = useContext(DataContext);
+    
+    const { userInfo } = useSelector(state=> state.userLogin);
+    const account = userInfo?.name;
+    
     const { cartItems } = useSelector(state => state.cart);
+    
     const navigate = useNavigate();
     const location = useLocation();
     const isCartActive = location.pathname === '/cart';
@@ -62,8 +65,7 @@ const IconButtons = ({ mobileIconView }) => {
     const openDialog = () => setOpen(true);
 
     
-    // const token = localStorage.getItem("token");
-    // const isLoggedIn = !!token;
+    
 
     const handleCartClick = () => {
        navigate("/cart");
@@ -86,8 +88,7 @@ const IconButtons = ({ mobileIconView }) => {
     return (
         <IconContainer mobileIconView={mobileIconView}>
             {account ? (
-                <Profile account={account} 
-                        setAccount={setAccount} 
+                <Profile account={account}  
                         mobileIconView={mobileIconView}
                 />
             ) : (

@@ -14,6 +14,7 @@ function checkAuth(req,res,next){
             next();
         }
     }catch(err){
+        console.log("JWT verify error:", err.message);
         res.status(403).json({"message":"Invalid or expired token"});
     }
 }

@@ -3,14 +3,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import productReducer from "./slices/productSlice"; 
 import cartReducer from "./slices/cartSlice";
 import wishListReducer from "./slices/wishListSlice";
-
-import { userLoginReducer } from "./reducers/userReducer";
+import userReducer from "./slices/userSlice";
 
 
 
 
 const tokenFromStorage = localStorage.getItem("token");
 const nameFromStorage = localStorage.getItem("userName");
+const emailFromStorage = localStorage.getItem("userEmail");
 
 
 
@@ -18,7 +18,8 @@ const preloadedState = {
     userLogin : {
         userInfo : tokenFromStorage ? {
             token : tokenFromStorage,
-            name : nameFromStorage
+            name : nameFromStorage,
+            email : emailFromStorage
         } : null
     }
 };
@@ -26,7 +27,7 @@ const preloadedState = {
 
 const store = configureStore({
     reducer: {
-        userLogin: userLoginReducer,
+        userLogin: userReducer,
 
         productsData: productReducer,
 

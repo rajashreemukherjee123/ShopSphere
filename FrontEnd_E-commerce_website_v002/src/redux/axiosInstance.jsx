@@ -28,13 +28,10 @@ axiosInstance.interceptors.response.use(
     },
 
     (error) => {
-        if( 
-            error.response?.status === 401 || 
-            error.response?.status === 403  
-            
-        ){
+        if(error.response?.status === 401 ){
             localStorage.removeItem("token");
             localStorage.removeItem("userName");
+            localStorage.removeItem("userEmail");
 
             window.dispatchEvent(
                 new Event("tokenExpired")

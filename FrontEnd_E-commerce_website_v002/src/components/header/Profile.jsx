@@ -1,20 +1,24 @@
 import React, { useState } from 'react'
 import {Box,Typography,Menu,MenuItem,Divider} from '@mui/material';
 import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
-import { useDispatch } from 'react-redux';
-import { resetWishList } from '../../redux/slices/wishListSlice';
-import { resetCart } from '../../redux/slices/cartSlice';
-import { USER_LOGOUT } from '../../redux/constants/userConstant';
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 
+import { useDispatch, useSelector } from 'react-redux';
+
+import { resetWishList } from '../../redux/slices/wishListSlice';
+import { resetCart } from '../../redux/slices/cartSlice';
+import {logout} from "../../redux/slices/userSlice";
+
+import {toast} from "react-toastify";
 
 
 
-const Profile = ({account, setAccount, mobileIconView }) => {
+const Profile = ({account, mobileIconView }) => {
 
   const dispatch = useDispatch();
 
-    
+  const {userInfo} = useSelector(state => state.userLogin);  
+
     const [anchorEl, setAnchorE1 ] = useState(null);
 
     const userEmail = localStorage.getItem("userEmail") || "";
@@ -31,13 +35,15 @@ const Profile = ({account, setAccount, mobileIconView }) => {
         localStorage.removeItem("token");
         localStorage.removeItem("userName");
         localStorage.removeItem("userEmail");
-        setAccount("");
+        
+        dispatch(logout());
 
-        dispatch({type: USER_LOGOUT});
         dispatch(resetWishList());
         dispatch(resetCart());
 
         handleClose();
+
+        toast.success("Logout successful!");
     };
 
   return (
