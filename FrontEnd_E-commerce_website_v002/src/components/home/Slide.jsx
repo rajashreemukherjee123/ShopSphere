@@ -8,6 +8,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { Box, Button, Divider, styled, Typography } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductSection } from "../../redux/slices/productSlice";
+import SlideSkeleton from "../loading/SlideSkeleton";
 
 const Carousel = CarouselLib.default || CarouselLib;
 
@@ -77,8 +78,10 @@ const Slide = ({ title, timer, section }) => {
     }
   }, [dispatch, section]);
 
+  
+
   if(sectionLoading){
-      return <Typography>sectionLoading...</Typography>
+    return <SlideSkeleton/>;
   }
 
   if (sectionError) {
@@ -100,60 +103,64 @@ const Slide = ({ title, timer, section }) => {
   };
 
   return (
-    <Component>
-      <Deal>
-        <DealText>{title}</DealText>
-        {timer && (
-          <Timer>
-            <img src={timerURL} alt="timer" style={{ width: 24 }} />
-            <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
-          </Timer>
-        )}
+    <>
+      
 
-        <ViewAllButton
-          variant="contained"
-          color="primary"
-          onClick={() => navigat(`/sections/${section}`)}
-        >
-          View All
-        </ViewAllButton>
-      </Deal>
-      <Divider />
-      <Carousel
-        responsive={responsive}
-        swipeable={false}
-        draggable={false}
-        infinite={true}
-        autoPlay={true}
-        autoPlaySpeed={4000}
-        keyBoardControl={true}
-        centerMode={true}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
-        containerClass="carousel-container"
-      >
-        {products.map((product, index) => (
-          <NavLink
-            key={product._id || index}
-            to={`/product/${product.id}`}
-            style={{ textDecoration: "none" }}
+      <Component>
+        <Deal>
+          <DealText>{title}</DealText>
+          {timer && (
+            <Timer>
+              <img src={timerURL} alt="timer" style={{ width: 24 }} />
+              <Countdown date={Date.now() + 5.04e7} renderer={renderer} />
+            </Timer>
+          )}
+
+          <ViewAllButton
+            variant="contained"
+            color="primary"
+            onClick={() => navigat(`/sections/${section}`)}
           >
-            <Box  sx={{ padding: "25px 15px", textAlign:"center" }}>
-              
-                <Image  src={product.url} alt="product" />
+            View All
+          </ViewAllButton>
+        </Deal>
+        <Divider />
+        <Carousel
+          responsive={responsive}
+          swipeable={false}
+          draggable={false}
+          infinite={true}
+          autoPlay={true}
+          autoPlaySpeed={4000}
+          keyBoardControl={true}
+          centerMode={true}
+          dotListClass="custom-dot-list-style"
+          itemClass="carousel-item-padding-40-px"
+          containerClass="carousel-container"
+        >
+          {products.map((product, index) => (
+            <NavLink
+              key={product._id || index}
+              to={`/product/${product.id}`}
+              style={{ textDecoration: "none" }}
+            >
+              <Box  sx={{ padding: "25px 15px", textAlign:"center" }}>
+                
+                  <Image  src={product.url} alt="product" />
 
-                <Text style={{ fontWeight: 600, color: "#212121" }}>
-                    {product.title.shortTitle}
-                </Text>
-                <Text style={{ color: "green" }}>{product.discount}</Text>
-                <Text style={{ color: "#212121", opacity: ".6" }}>
-                    {product.tagline}
-                </Text>
-            </Box>
-          </NavLink>
-        ))}
-      </Carousel>
-    </Component>
+                  <Text style={{ fontWeight: 600, color: "#212121" }}>
+                      {product.title.shortTitle}
+                  </Text>
+                  <Text style={{ color: "green" }}>{product.discount}</Text>
+                  <Text style={{ color: "#212121", opacity: ".6" }}>
+                      {product.tagline}
+                  </Text>
+              </Box>
+            </NavLink>
+          ))}
+        </Carousel>
+      </Component>
+    </>
   );
 };
 

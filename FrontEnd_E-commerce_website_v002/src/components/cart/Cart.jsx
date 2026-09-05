@@ -12,6 +12,8 @@ import LoginDialog from "../login/LoginDialog";
 
 import { toast } from "react-toastify";
 
+import CartSkeleton from "../loading/CartSkeleton";
+
 
 
 const Container = styled(Box)(({ theme }) => ({
@@ -132,13 +134,9 @@ const Cart = () => {
     );
   }
 
-// ------ Logged in but cart load
-  if (loading) {
-    return (
-      <Box sx={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
-        Loading...
-      </Box>
-    );
+
+  if(loading){
+    return <CartSkeleton />;
   }
 
 

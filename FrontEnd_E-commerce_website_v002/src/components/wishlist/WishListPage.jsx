@@ -8,13 +8,14 @@ import {
   Button,
 } from "@mui/material";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getWishlist, removeWishList } from "../../redux/slices/wishListSlice";
 import { addToCart } from "../../redux/slices/cartSlice";
 
-// import { getProducts } from '../../redux/slices/productSlice';
+
 import { toast } from "react-toastify";
 import LoginDialog from "../login/LoginDialog";
+import ProductCardSkeleton from "../loading/ProductCardSkeleton";
 
 const WishListPage = () => {
   const navigate = useNavigate();
@@ -112,14 +113,7 @@ const WishListPage = () => {
     );
   }
 
-  // ------- Logged in and loading -----
-  if (loading) {
-    return (
-      <Box sx={{ textAlign: "center", padding: 8 }}>
-        <Typography>Loading Wishlist...</Typography>
-      </Box>
-    );
-  }
+  
 
   // ------- Error -----
   if (error) {
@@ -138,7 +132,10 @@ const WishListPage = () => {
   }
 
   // ------- wishlist Empty -----
-  if (!wishList || wishList.items?.length === 0) {
+  if (
+    !loading && 
+    (!wishList || wishList.items?.length === 0)
+  ) {
     return (
       <Box
         sx={{
@@ -193,8 +190,11 @@ const WishListPage = () => {
         padding: 3,
       }}
     >
-      {!loading &&
-        wishList?.items?.map((item) => {
+      {loading ? 
+        Array.from({length: 4}).map((_, index)=>(
+          <ProductCardSkeleton key={index} />
+        ))
+        : wishList?.items?.map((item) => {
           return (
             <Card
               key={item._id}

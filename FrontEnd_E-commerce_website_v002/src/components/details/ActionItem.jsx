@@ -12,6 +12,10 @@ import { addToCart } from '../../redux/slices/cartSlice';
 import useRazorpay from '../../hooks/useRazorpay'; // centralized hook
 import { toast } from 'react-toastify';
 
+import ActionItemSkeleton from '../loading/ActionItemSkeleton';
+
+
+
 const LeftContainer = styled(Box)(({ theme }) => ({
     padding: '40px 0 0 80px',
     [theme.breakpoints.down('md')]: { padding: '20px 40px' }
@@ -33,7 +37,15 @@ const StyledButton = styled(Button)(({ theme }) => ({
     [theme.breakpoints.down('sm')]: { width: '100%', marginBottom: '10px', fontSize: '15px' }
 }));
 
+
+
+
 const ActionItem = ({ product }) => {
+
+    if(!product){
+        return <ActionItemSkeleton />;
+    }
+
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [quantity] = useState(1);

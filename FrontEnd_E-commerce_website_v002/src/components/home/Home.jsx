@@ -31,12 +31,7 @@ const Home = () => {
     <>
     
       <Banner/>
-      {/* { !loading && products && products.length > 0 && <MidSlide 
-                                                          title="Deal of the Day"
-                                                          section="Deal-of-the-day" 
-                                                          timer={true}
-                                                       /> 
-      } */}
+      
       <MidSlide 
                                                           title="Deal of the Day"
                                                           section="deal-of-the-day" 

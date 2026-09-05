@@ -6,6 +6,7 @@ import {getProductSection} from '../../redux/slices/productSlice'
 import {addToCart} from '../../redux/slices/cartSlice';
 import WishlistButton from '../button/WishlistButton';
 import { toast } from "react-toastify";
+import ProductCardSkeleton from "../loading/ProductCardSkeleton";
 
 
 const SectionsPage = () => {
@@ -52,7 +53,7 @@ const SectionsPage = () => {
           }}
         >
     
-          {sectionLoading && <Typography>Loading...</Typography>}
+          {/* {sectionLoading && <Typography>Loading...</Typography>} */}
     
           {sectionError && (
             <Typography color="error">
@@ -60,8 +61,12 @@ const SectionsPage = () => {
             </Typography>
           )}
     
-          {
-            !sectionLoading && products.map((item)=>{
+          {sectionLoading ? 
+            Array.from({ length: 8 }).map((_, index)=>(
+              <ProductCardSkeleton key={index}/>
+            ))
+
+            : products.map((item)=>{
               return (
                 <Card key={item._id}
                   onClick={()=> navigate(`/product/${item.id}`)}
