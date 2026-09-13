@@ -12,7 +12,6 @@ const StyledButton = styled(Button)`
 `;
 
 const GroupButton = ({ item }) => {
-    // const [updating, setUpdating] = useState(false);
 
     const dispatch = useDispatch();
 
@@ -51,7 +50,10 @@ const GroupButton = ({ item }) => {
     return (
         <Component>
             <StyledButton 
-                onClick={handleDecrement} 
+                onClick={(e)=>{
+                    e.stopPropagation();
+                    handleDecrement();
+                }} 
                 disabled={item.quantity <= 1 || updating}
             >-
             </StyledButton>
@@ -59,7 +61,10 @@ const GroupButton = ({ item }) => {
             <Button disabled style={{ color: '#000' }}>{item.quantity}</Button>
             
             <StyledButton 
-                onClick={handleIncrement}
+                onClick={(e)=>{
+                    e.stopPropagation();
+                    handleIncrement()
+                }}
                 disabled={updating}
             >+
             </StyledButton>

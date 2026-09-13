@@ -23,7 +23,7 @@ const ProductCardSkeleton = () => {
 
         <Skeleton variant='text'
             height={30}
-            width="80%"
+            width="80%" 
             animation="wave"
         />
 

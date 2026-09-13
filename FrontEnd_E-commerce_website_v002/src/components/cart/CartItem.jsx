@@ -10,6 +10,7 @@ import { removeFromCart } from '../../redux/slices/cartSlice';
 import {addToWishList} from "../../redux/slices/wishListSlice";
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Component = styled(Box)`
     border-top: 4px solid #f0f0f0;
@@ -39,6 +40,8 @@ const CartItem = ({item}) => {
 
     const dispatch = useDispatch();
 
+    const navigate = useNavigate();
+
     const [openRemoveDialog, setOpenRemoveDialog] = useState(false);
     
     if (!item?.productId){
@@ -64,6 +67,7 @@ const CartItem = ({item}) => {
     
     // Remove Dialog
     const removeItemFromCart = async() =>{
+        
         try{
             await dispatch(removeFromCart(product._id)).unwrap();
 
@@ -96,7 +100,7 @@ const CartItem = ({item}) => {
   return (
 <>
     
-    <Component>
+    <Component onClick={()=>{navigate(`/product/${product?.id}`)}}>
       <LeftComponent>
             <img src={product.url} alt="product" style={{ height: 110, width: 110, objectFit: 'contain' }}/>
             <ButtonGroup item={item} />
@@ -109,7 +113,12 @@ const CartItem = ({item}) => {
                         <Box component="span" style={{ color: "#878787" }}><strike>₹{product.price.mrp}</strike></Box>&nbsp;&nbsp;&nbsp;
                         <Box component="span" style={{ color: "#388E3C" }}>{product.price.discount} off</Box>
             </Typography>
-            <Remove onClick={handleRemoveClick}>Remove</Remove>
+            <Remove onClick={(e)=>{
+                e.stopPropagation();
+                handleRemoveClick();
+            }}>
+                Remove
+            </Remove>
       </Box>
     </Component>
 
