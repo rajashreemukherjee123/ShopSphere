@@ -261,11 +261,13 @@ ShopSphere/
 
 # 🔄 Redux Toolkit
 
-The project initially used traditional Redux for state management.
+### State Management
 
-The application has now been migrated to **Redux Toolkit** for simpler and more maintainable state management.
+The application uses **Redux Toolkit** for centralized and predictable state management.
 
-Current Redux Toolkit structure:
+Redux Toolkit simplifies Redux development by reducing boilerplate code and providing a structured way to manage application state. The project uses separate **slices** to keep different parts of the application state modular, maintainable, and easier to scale.
+
+### Redux Toolkit Structure
 
 ```text
 redux/
@@ -281,18 +283,16 @@ redux/
 └── store.js
 ```
 
-Redux Toolkit is used for managing:
+### State Managed by Redux Toolkit
 
-* Product state
-* Product details
-* Product categories
-* Product sections
-* Cart state
-* Wishlist state
-* User authentication state
-* Loading and error states
+* **Product State** — product listing, product details, categories, and product sections
+* **Cart State** — cart items, quantity updates, and item removal
+* **Wishlist State** — adding, displaying, and removing wishlist items
+* **User State** — user authentication and user information
+* **Loading & Error States** — handling API loading and error conditions
 
----
+This structure keeps state management **organized, modular, predictable, and easier to maintain and scale**.
+
 
 # 🔐 Authentication Workflow
 
