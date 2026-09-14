@@ -10,6 +10,7 @@ import Search from './Search';
 import IconButtons from './IconButtons';
 
 import MenuIcon from '@mui/icons-material/Menu';
+import { useNavigate } from 'react-router-dom';
 
 
 const StyledHeader = styled(AppBar)`
@@ -33,6 +34,8 @@ const MenuButton = styled(IconButton)(({ theme }) => ({
 const Header = () => {
 
     const [open,setOpen] = useState(false); //for Drawer open & close
+
+    const navigate = useNavigate();
 
     //Drawer open 
     const handleOpen = ()=>{
@@ -81,7 +84,9 @@ const Header = () => {
             </Drawer>
 
              {/* Logo */}
-            <Coponent sx={{ flexShrink: 0 }}>
+            <Coponent sx={{ flexShrink: 0 }} 
+                onClick={()=>navigate("/")}
+            >
                 <img src={OneStop_Logo} alt="OneStop Logo" style={{ height: '50px', width: 'auto' }} />
                 
             </Coponent>
