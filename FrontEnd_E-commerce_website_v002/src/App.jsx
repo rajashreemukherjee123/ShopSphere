@@ -20,6 +20,14 @@ import SectionsPage from "./components/sections/SectionsPage";
 import WishListPage from "./components/wishlist/WishListPage";
 
 
+import Footer from "./components/footer/Footer";
+
+import AboutUs from "./components/pages/AboutUs";
+import ContactUs from "./components/pages/ContactUs";
+import PrivacyPolicy from "./components/pages/PrivacyPolicy";
+import TermsAndConditions from "./components/pages/TermsAndConditions";
+import ScrollToTop from "./components/ScrollToTop";
+
 import { resetCart } from "./redux/slices/cartSlice";
 import { resetWishList } from "./redux/slices/wishListSlice";
 
@@ -116,8 +124,11 @@ const App = () => {
   return (
     <>
       <BrowserRouter>
+        <ScrollToTop />
         <Header />
-        <Box style={{ marginTop: 75 }}>
+        {/* <Box style={{ marginTop: 75 }}> */}
+        <Box style={{marginTop:75, minHeight: "80vh"}}>
+
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/product/:id" element={<DetailView />} />
@@ -132,8 +143,16 @@ const App = () => {
               path="/failure"
               element={<h2>Payment Failed. Please try again.</h2>}
             />
+
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/privacyPolicy" element={<PrivacyPolicy />} />
+            <Route path="/terms" element={<TermsAndConditions />} />
+
           </Routes>
         </Box>
+
+        <Footer/>
       </BrowserRouter>
 
       <ToastContainer position="bottom-center" autoClose={2000} theme="light" closeOnClick
