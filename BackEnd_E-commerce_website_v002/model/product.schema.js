@@ -15,7 +15,9 @@ const productSchema = new mongoose.Schema({
     description: String,
     discount: String,
     tagline: String,
-    sections: [String] 
+    sections: [String],
+    
+    embedding: [Number]
 
 },{versionKey:false,id: false});
 

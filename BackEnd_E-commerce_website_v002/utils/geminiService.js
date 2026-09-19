@@ -4,7 +4,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 const generateEmbedding = async(text)=>{
     try{
-        const model = genAI.getGenerativeModel({ model: "text-embedding-004" });
+        const model = genAI.getGenerativeModel({ model: "gemini-embedding-2-preview" });
 
         const result = await model.embedContent(text);
         const embedding = result.embedding;
@@ -14,6 +14,7 @@ const generateEmbedding = async(text)=>{
     }catch(err){
         console.log(err);
         throw err;
+        console.log("fvfgvfbfgb")
     }
 };
 

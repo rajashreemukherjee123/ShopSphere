@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 const checkConnection = require("./database/db");
 
-const defaultData = require("./default");
+// const defaultData = require("./default");
 
 const host = process.env.HOST || "0.0.0.0";
 const port = process.env.PORT || 3000;
@@ -33,4 +33,4 @@ app.listen(port, host, () => {
   console.log(`Server has started at http://${host}:${port}/`);
 });
 
-defaultData();
+// defaultData();
