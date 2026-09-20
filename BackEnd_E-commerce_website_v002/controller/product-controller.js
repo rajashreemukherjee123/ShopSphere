@@ -1,4 +1,5 @@
 const product = require("../model/product.schema");
+const { generateEmbedding } = require("../utils/geminiService");
 
 
 
@@ -57,5 +58,49 @@ const getSectionsProduct = async(req,res)=>{
 }
 
 
+// AI vector search API
+const aiSearchProduct = async(req,res)=>{
+    try{
+        const searchQuery = req.body.query;
 
-module.exports = {getProducts, getProductById, getCategoryProduct, getSectionsProduct};
+        if(!searchQuery){
+            return res.status(400).json({ message: "Please provide a search query"})
+        }
+
+        const queryVector = await generateEmbedding(searchQuery);
+
+        const searchResults = await product.aggregate([
+            {
+                "$vectorSearch": {
+                    "index": "vector_index",
+                    "path": "embedding",
+                    "queryVector": queryVector,
+                    "numCandidates": 100,
+                    "limit": 10
+                }
+            },
+            {
+                "$project": {
+                    "embedding": 0,
+                    "score": { "$meta": "vectorSearchScore"}
+                }
+            },
+            {
+                "$match": {
+                    "score": {
+                        "$gte": 0.776
+                    }
+                }
+            }
+        ]);
+
+        res.status(200).json(searchResults);
+
+    }catch(err){
+        res.status(500).json({ message: err.message });
+    }
+}
+
+
+
+module.exports = {getProducts, getProductById, getCategoryProduct, getSectionsProduct, aiSearchProduct};

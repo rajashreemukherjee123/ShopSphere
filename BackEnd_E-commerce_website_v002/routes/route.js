@@ -1,7 +1,7 @@
 const express = require("express");
 const env = require("dotenv").config();
 const { userSignup, userLogin } = require('../controller/user-controller');
-const { getProducts, getProductById, getCategoryProduct, getSectionsProduct} = require("../controller/product-controller");
+const { getProducts, getProductById, getCategoryProduct, getSectionsProduct, aiSearchProduct} = require("../controller/product-controller");
 const { addToCart, removeFromCart, updateQuantity, getCartDetails, clearCart } = require("../controller/cart-controller");
 
 const { createOrder, verifyPayment } = require("../controller/payment-controller");
@@ -39,6 +39,8 @@ router.get("/products/category/:category", getCategoryProduct);
 //--------------------------------------------------------- Show product by sections ----------------------------------------------------------
 router.get("/products/sections/:section", getSectionsProduct);
 
+//--------------------------------------------------------- AI search product ----------------------------------------------------------
+router.post("/products/ai-search", aiSearchProduct);
 
 
 
