@@ -1,5 +1,5 @@
 const product = require("../model/product.schema");
-const { generateEmbedding } = require("../utils/geminiService");
+const { generateEmbedding, extractSearchKeywords } = require("../utils/geminiService");
 
 
 
@@ -38,7 +38,7 @@ const getCategoryProduct = async(req,res)=>{
         res.status(200).json(categoryObj);
 
     }catch(err){
-        res.status(500).json({mesage: err.message});
+        res.status(500).json({message: err.message});
     }
 }
 
@@ -53,7 +53,7 @@ const getSectionsProduct = async(req,res)=>{
         res.status(200).json(sectionObj);
 
     }catch(err){
-        res.status(500).json({mesage: err.message});
+        res.status(500).json({message: err.message});
     }
 }
 
@@ -67,18 +67,37 @@ const aiSearchProduct = async(req,res)=>{
             return res.status(400).json({ message: "Please provide a search query"})
         }
 
-        const queryVector = await generateEmbedding(searchQuery);
+
+        const optimizedQuery = await extractSearchKeywords(searchQuery);
+        console.log("user-typed", searchQuery);
+        console.log("AI converted to:", optimizedQuery);
+
+        let queryVector;
+
+        try{
+            queryVector = await generateEmbedding(optimizedQuery);
+        } catch(embedErr){
+            const fallbackResult = await product.find({
+                $or: [
+                    {name: {$regex: searchQuery, $options: "i"}},
+                    {category: {$regex: searchQuery, $options: "i"}},
+                ],
+            }).limit(10);
+
+            return res.status(200).json(fallbackResult);
+        }
 
         const searchResults = await product.aggregate([
             {
                 "$vectorSearch": {
                     "index": "vector_index",
                     "path": "embedding",
-                    "queryVector": queryVector,
-                    "numCandidates": 100,
+                    queryVector,
+                    "numCandidates": 50,
                     "limit": 10
-                }
+                },
             },
+
             {
                 "$project": {
                     "embedding": 0,
@@ -88,11 +107,17 @@ const aiSearchProduct = async(req,res)=>{
             {
                 "$match": {
                     "score": {
-                        "$gte": 0.776
+                        "$gte": 0.79
                     }
                 }
             }
         ]);
+
+        if (searchResults.length > 0) {
+            const topScore = searchResults[0].score;
+            const filtered = searchResults.filter(r => r.score >= topScore * 0.9);
+            return res.status(200).json(filtered);
+        }
 
         res.status(200).json(searchResults);
 

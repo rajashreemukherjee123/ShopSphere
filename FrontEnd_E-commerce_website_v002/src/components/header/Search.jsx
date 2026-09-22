@@ -9,14 +9,6 @@ import { getProducts } from '../../redux/slices/productSlice';
 import {Link} from 'react-router-dom';
 
 const SearchContainer = styled(Box)`
-    // background: #F6F6F6;
-    // width:100%;
-    // border-radius: 8px;
-    // margin-left: 0;
-    // display: flex;
-    // align-items: center;
-    
-    // height: 40px;
 
     background: #F6F6F6;
     width: 180px;
