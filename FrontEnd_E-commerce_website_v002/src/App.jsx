@@ -18,6 +18,7 @@ import Cart from "./components/cart/Cart";
 import CategoryPage from "./components/category/CategoryPage";
 import SectionsPage from "./components/sections/SectionsPage";
 import WishListPage from "./components/wishlist/WishListPage";
+import SearchResult from "./components/search_Result/SearchResult";
 
 
 import Footer from "./components/footer/Footer";
@@ -136,6 +137,7 @@ const App = () => {
             <Route path="/category/:category" element={<CategoryPage />} />
             <Route path="/sections/:section" element={<SectionsPage />} />
             <Route path="/wishlist" element={<WishListPage />} />
+            <Route path="/search" element={<SearchResult/>}/>
 
             {/*  */}
             <Route path="/success" element={<h2>Payment Successful! </h2>} />

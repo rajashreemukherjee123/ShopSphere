@@ -52,7 +52,7 @@ const CastomButtons = ({ mobileView}) => {
           color: isActive ? '#124dee' : 'inherit', 
           fontWeight: isActive ? 'bold' : 'normal',
           textDecoration: 'none',
-          marginRight: '20px'
+          marginRight: '10px'
 
         })} >
             <Typography>Home</Typography>
@@ -63,7 +63,7 @@ const CastomButtons = ({ mobileView}) => {
           color: isActive ? '#124dee' : 'inherit', 
           fontWeight: isActive ? 'bold' : 'normal',
           textDecoration: 'none',
-          marginRight: '20px',
+          marginRight: '10px',
         })} >
             <Typography>Fashion</Typography>
         </NavLink>
@@ -73,7 +73,7 @@ const CastomButtons = ({ mobileView}) => {
           color: isActive ? '#124dee' : 'inherit', 
           fontWeight: isActive ? 'bold' : 'normal',
           textDecoration: 'none',
-          marginRight: '20px'
+          marginRight: '10px'
         })}>
             <Typography>Mobile</Typography>
         </NavLink>
@@ -83,7 +83,7 @@ const CastomButtons = ({ mobileView}) => {
           color: isActive ? '#124dee' : 'inherit', 
           fontWeight: isActive ? 'bold' : 'normal',
           textDecoration: 'none',
-          marginRight: '20px'
+          marginRight: '10px'
         })}>
             <Typography>Electronic</Typography>
         </NavLink>
@@ -93,7 +93,7 @@ const CastomButtons = ({ mobileView}) => {
           color: isActive ? '#124dee' : 'inherit', 
           fontWeight: isActive ? 'bold' : 'normal',
           textDecoration: 'none',
-          marginRight: '20px'
+          marginRight: '10px'
         })}>
             <Typography>Appliances</Typography>
         </NavLink>
@@ -104,7 +104,7 @@ const CastomButtons = ({ mobileView}) => {
           color: isActive ? '#124dee' : 'inherit', 
           fontWeight: isActive ? 'bold' : 'normal',
           textDecoration: 'none',
-          marginRight: '20px'
+          marginRight: '15px'
         })}>
             <Typography>Beauty</Typography>
         </NavLink>

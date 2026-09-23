@@ -56,6 +56,17 @@ export const getProductSection =  createAsyncThunk("products/getProductSection",
 })
 
 
+// ---------------- AI HYBRIDE SEARCH --------------------
+export const aiSearchProducts = createAsyncThunk("products/aiSearchProducts", async(MediaQueryList, {rejectWithValue})=>{
+    try{
+        const {data} = await axios.post(`${URL}//products/ai-search`, {query});
+        return data;
+    }catch(err){
+        return rejectWithValue(err.message);
+    }
+})
+
+
 
 
 // ************** INITIAL STATE *****************
@@ -78,7 +89,12 @@ const initialState = {
     // section products
     section: {},
     sectionLoading: false,
-    sectionError: null
+    sectionError: null,
+
+    // ai search state
+    aiSearchResults: [],
+    aiSearchLoading: false,
+    aiSearchError: null
 };
 
 
@@ -192,7 +208,27 @@ const productSlice = createSlice({
             .addCase(getProductSection.rejected, (state, action)=>{
                 state.sectionLoading = false;
                 state.sectionError = action.payload;
-            });
+            })
+
+
+            // ai search products
+            .addCase(aiSearchProducts.pending, (state)=>{
+                state.aiSearchLoading = true;
+                state.aiSearchError = null;
+                state.aiSearchResults = [];
+            })
+
+            .addCase(aiSearchProducts.fulfilled, (state, action)=>{
+                state.aiSearchLoading = false;
+                state.aiSearchResults = action.payload;
+                state.aiSearchError = null;
+            })
+
+            .addCase(aiSearchProducts.rejected, (state,action)=>{
+                state.aiSearchLoading = false;
+                state.aiSearchResults = [];
+                state.aiSearchError = action.payload;
+            })
     }
 });
 
