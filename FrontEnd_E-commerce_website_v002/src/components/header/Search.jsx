@@ -45,7 +45,9 @@ const SearchWrapper = styled(Box)`
 `;
 
 // 3. Animated Border Box
-const AnimatedBorderBox = styled(Box)(({ $isFocused }) => ({
+const AnimatedBorderBox = styled(Box, {
+    shouldForwardProp: (prop) => prop !== '$isFocused',
+})(({ $isFocused }) => ({
     position: "relative",
     padding: "2px",
     borderRadius: "10px",
@@ -122,9 +124,12 @@ const Search = () => {
     const {products} = useSelector(state => state.productsData);
     const dispatch = useDispatch();
 
-    useEffect(()=>{
-        dispatch(getProducts())
-    },[dispatch])
+    useEffect(() => {
+    if (products.length === 0) {
+        dispatch(getProducts());
+    }
+    }, [dispatch, products.length]);
+    
 
     // const getText = (text)=>{
     //     setText(text);

@@ -79,7 +79,9 @@ const aiSearchProduct = async(req,res)=>{
         } catch(embedErr){
             const fallbackResult = await product.find({
                 $or: [
-                    {name: {$regex: searchQuery, $options: "i"}},
+                    // {name: {$regex: searchQuery, $options: "i"}},
+                    {"title.shortTitle": {$regex: searchQuery, $options: "i"}},
+                    {"title.longTitle": {$regex: searchQuery, $options: "i"}},
                     {category: {$regex: searchQuery, $options: "i"}},
                 ],
             }).limit(10);

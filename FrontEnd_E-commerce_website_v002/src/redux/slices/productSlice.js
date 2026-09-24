@@ -57,9 +57,9 @@ export const getProductSection =  createAsyncThunk("products/getProductSection",
 
 
 // ---------------- AI HYBRIDE SEARCH --------------------
-export const aiSearchProducts = createAsyncThunk("products/aiSearchProducts", async(MediaQueryList, {rejectWithValue})=>{
+export const aiSearchProducts = createAsyncThunk("products/aiSearchProducts", async(query, {rejectWithValue})=>{
     try{
-        const {data} = await axios.post(`${URL}//products/ai-search`, {query});
+        const {data} = await axios.post(`${URL}/products/ai-search`, {query});
         return data;
     }catch(err){
         return rejectWithValue(err.message);
@@ -131,7 +131,7 @@ const productSlice = createSlice({
             .addCase(getProducts.pending, (state)=>{
                 state.productsLoading = true;
                 state.productsError = null;
-                state.products = [];
+                
             })
 
             .addCase(getProducts.fulfilled, (state, action)=>{
