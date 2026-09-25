@@ -48,7 +48,7 @@ const CastomButtons = ({ mobileView}) => {
     <ButtonCastom mobileView={mobileView}>
 
 {/* Home */}        
-        <NavLink to='/' style={({ isActive }) => ({
+        {/* <NavLink to='/' style={({ isActive }) => ({
           color: isActive ? '#124dee' : 'inherit', 
           fontWeight: isActive ? 'bold' : 'normal',
           textDecoration: 'none',
@@ -56,7 +56,7 @@ const CastomButtons = ({ mobileView}) => {
 
         })} >
             <Typography>Home</Typography>
-        </NavLink>
+        </NavLink> */}
 
 {/* fashion */}
         <NavLink to='/category/fashion'  style={({ isActive }) => ({

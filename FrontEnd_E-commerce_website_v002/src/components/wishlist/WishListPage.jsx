@@ -17,6 +17,11 @@ import { toast } from "react-toastify";
 import LoginDialog from "../login/LoginDialog";
 import ProductCardSkeleton from "../loading/ProductCardSkeleton";
 
+
+import heartBagAnimation from "../../assets/Heart_bag_red_heart_with_red_dot.json";
+import BrokenHeart from "../../assets/Cute heart broken.json";
+import { Player } from '@lottiefiles/react-lottie-player';
+
 const WishListPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -73,6 +78,18 @@ const WishListPage = () => {
           padding: 3,
         }}
       >
+
+        <Box>
+          <Box sx={{ display: "flex", justifyContent: "center", marginBottom:2}}>
+            <Player
+              autoplay
+              loop
+              src={heartBagAnimation} 
+              style={{width: '200px', height: '200px'}}
+            />
+
+          </Box>
+        </Box>
         <Box>
           <Typography
             variant="h5"
@@ -144,6 +161,17 @@ const WishListPage = () => {
           padding: "80px 20px",
         }}
       >
+        <Box>
+          <Box sx={{ display: "flex", justifyContent: "center", marginBottom:2}}>
+            <Player
+              autoplay
+              loop
+              src={BrokenHeart} 
+              style={{width: '200px', height: '200px'}}
+            />
+
+          </Box>
+        </Box>
         <Typography
           variant="h5"
           sx={{

@@ -87,7 +87,7 @@ const Header = () => {
             <Coponent sx={{ flexShrink: 0 }} 
                 onClick={()=>navigate("/")}
             >
-                <img src={OneStop_Logo} alt="OneStop Logo" style={{ height: '50px', width: 'auto' }} />
+                <img src={OneStop_Logo} alt="OneStop Logo" style={{ height: '50px', width: 'auto', cursor:'pointer' }} />
                 
             </Coponent>
             

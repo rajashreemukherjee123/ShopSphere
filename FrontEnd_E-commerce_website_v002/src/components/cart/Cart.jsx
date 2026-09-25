@@ -14,6 +14,9 @@ import { toast } from "react-toastify";
 
 import CartSkeleton from "../loading/CartSkeleton";
 
+import { Player } from "@lottiefiles/react-lottie-player";
+import LoginCart from "../../assets/EmptyCart.json";
+import EmptyCart from "../../assets/Nothing.json"
 
 
 const Container = styled(Box)(({ theme }) => ({
@@ -93,6 +96,16 @@ const Cart = () => {
             padding: 3,
           }}
         >
+          <Box>
+            <Box sx={{ display:'flex', justifyContent:'center', marginBottom:2}}>
+              <Player 
+                autoplay
+                loop
+                src={LoginCart}
+                style={{ width:'200px', height:'200px'}}
+              />
+            </Box>
+          </Box>
           <Box>
             <Typography
               variant="h5"
@@ -215,11 +228,22 @@ const Cart = () => {
             justifyContent: "center",
           }}
         >
-          <img
+          {/* <img
             src="https://rukminim1.flixcart.com/www/800/800/promos/16/05/2019/d438a32e-765a-4d8b-b4a6-520b560971e8.png?q=90"
             alt="empty"
             style={{ width: "15%" }}
-          />
+          /> */}
+
+          <Box>
+            <Box sx={{ display:'flex', justifyContent:'center', marginBottom:2}}>
+              <Player 
+                autoplay
+                loop
+                src={EmptyCart}
+                style={{ width:'200px', height:'200px'}}
+              />
+            </Box>
+          </Box>
           <Typography sx={{ marginTop: "20px", fontSize: 18, fontWeight: 600 }}>
             Your cart is empty!
           </Typography>
