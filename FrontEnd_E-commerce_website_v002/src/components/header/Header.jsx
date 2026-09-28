@@ -20,7 +20,7 @@ const StyledHeader = styled(AppBar)`
     // justify-content: center;
 `
 const Coponent = styled(Box)`
-    margin-left: 2%;
+    // margin-left: 2%;
 `
 const MenuButton = styled(IconButton)(({ theme }) => ({
     display: "none",
@@ -73,32 +73,73 @@ const Header = () => {
     
       <StyledHeader>
         
-        <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', px: 3,minHeight: '64px !important' }}>
+        <Toolbar sx={{ display: 'flex', 
+                       flexDirection: 'row',
+                       alignItems: 'center', 
+                       justifyContent: 'space-between', 
+                       px: {xs:1, md:3},
+                       gap: {xs: 1, md:2},
+                       minHeight: '64px !important' 
+                    }}>
             
-            <MenuButton color='inherit' onClick={handleOpen}>
-                <MenuIcon/>
-            </MenuButton>
+           
 
             <Drawer open={open} onClose={handleClose} >
                 {list()}
             </Drawer>
 
-             {/* Logo */}
-            <Coponent sx={{ flexShrink: 0 }} 
-                onClick={()=>navigate("/")}
+
+            <Box
+                sx={{
+                    display: "flex",
+                    alignItems: 'center',
+                    // width: { xs: '100%', md: 'auto'},
+                    // justifyContent: 'flex-start'
+                    flexShrink:0
+                }}
             >
-                <img src={OneStop_Logo} alt="OneStop Logo" style={{ height: '50px', width: 'auto', cursor:'pointer' }} />
-                
-            </Coponent>
+                <MenuButton color='inherit' onClick={handleOpen} sx={{ml:-1, mr:0}}>
+                    <MenuIcon/>
+                </MenuButton>
+
+                {/* Logo */}
+                <Coponent sx={{ flexShrink: 0, ml:{xs:0, md:2} }} 
+                    onClick={()=>navigate("/")}
+                >
+                    <Box
+                        component='img'
+                        src={OneStop_Logo}
+                        alt="OneStop Logo"
+                        sx={{ 
+                                height: { xs: '35px', md: '50px' }, 
+                                width: 'auto', 
+                                cursor: 'pointer' 
+                            }}
+                    />
+                    {/* <img src={OneStop_Logo} alt="OneStop Logo" style={{ height: '50px', width: 'auto', cursor:'pointer' }} /> */} 
+                </Coponent>
+            </Box>
+
+            
             
             {/* Nav Buttons */}
-            <CastomButtons mobileView={false} />
+            <Box sx={{ display: { xs: 'none', md: 'block' } }}>
+                <CastomButtons mobileView={false} />
+            </Box>
+            
 
             {/* Search  */}
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, pr: 4 }}>
-                <Search/>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexGrow:1, justifyContent:'flex-end' }}>
+                <Box sx={{width:'100%', maxWidth:'420px'}}>
+                    <Search/>
+                </Box>
+                
+
                 {/* Icons */}
-                <IconButtons mobileIconView={false}/>
+                <Box sx={{ display:{ xs:'none', md:'block'}}}>
+                    <IconButtons mobileIconView={false}/>
+                </Box>
+                
             </Box>
             
         </Toolbar>
