@@ -69,8 +69,10 @@ const aiSearchProduct = async(req,res)=>{
 
 
         const optimizedQuery = await extractSearchKeywords(searchQuery);
+       
         console.log("user-typed", searchQuery);
         console.log("AI converted to:", optimizedQuery);
+        
 
         let queryVector;
 

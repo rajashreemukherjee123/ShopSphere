@@ -382,11 +382,43 @@ import { Transform } from '@mui/icons-material';
 
 //  Clockwise Rotation Animation
 const spin = keyframes`
-    0% { transform: translate(-50%, -50%) rotate(0deg); opacity: 1 }
+    0% { 
+        transform: translate(-50%, -50%) rotate(0deg); 
+        opacity: 1 
+    }
+
     15% { opacity: 1;}
+
     85% { opacity: 1; }
-    100% { transform: translate(-50%, -50%) rotate(360deg); opacity: 0; }
+
+    100% { 
+           transform: translate(-50%, -50%) rotate(360deg); 
+           opacity: 0; 
+    }
 `;
+
+// text scrolling animation
+const slideUp = keyframes`
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+
+    15% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    75% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+`
 
 //  Main Wrapper   // width: 420px;
 const SearchWrapper = styled(Box)`
@@ -444,6 +476,7 @@ const InnerSearchBox = styled(Box)`
     padding: 0 4px 0 12px;
     gap: 8px;
     z-index: 2;
+    position: relative;
 `;
 
 const InputSearchBase = styled(InputBase)`
@@ -454,18 +487,43 @@ const InputSearchBase = styled(InputBase)`
         padding: 0;
         font-size: 13px;
         color: #333;
+        position: relative;
+        z-index: 2;
 
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        // white-space: nowrap;
+        // overflow: hidden;
+        // text-overflow: ellipsis;
     }
-    .MuiInputBase-input::placeholder {
-        font-size: 13px; 
-        opacity: 0.6;
+    // .MuiInputBase-input::placeholder {
+    //     font-size: 13px; 
+    //     opacity: 0.6;
 
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    //     white-space: nowrap;
+    //     overflow: hidden;
+    //     text-overflow: ellipsis;
+    // }
+`;
+
+
+const AnimatedPlaceholder = styled(Box)`
+    position: absolute;
+    left: 40px;
+    top: 30%;
+    transform: translateY(-50%);
+    color: #777;
+    font-size: 13px;
+    pointer-events: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: calc(100% - 90px);
+
+    animation: ${slideUp} 3s ease-in-out;
+
+    @media(max-width: 600px){
+        left: 10px;
+        font-size: 12px;
+        max-width: calc(100% - 75px);
     }
 `;
 
@@ -487,6 +545,8 @@ const Search = () => {
     const [text,setText] = useState("");
     const [isFocused, setIsFocused] = useState(false);
 
+    const [placeholderIndex, setPlaceholderIndex] = useState(0);
+
     const navigate = useNavigate();
     const {products} = useSelector(state => state.productsData);
     const dispatch = useDispatch();
@@ -496,6 +556,19 @@ const Search = () => {
             dispatch(getProducts());
         }
     }, [dispatch, products.length]);
+
+
+
+    useEffect(()=>{       
+        const interval = setInterval(() => {
+            setPlaceholderIndex((prevIndex)=> {
+                return (prevIndex +1) % desktopPlaceholders.length;
+        });
+    },3000);
+
+        return ()=> clearInterval(interval);
+    }, []);
+
     
     const handleHybridSearch = (queryText)=>{
         const finalQuery = queryText || text;
@@ -512,26 +585,30 @@ const Search = () => {
         "Show me some cool watches"
     ];
 
-// search bar example
-    const placeholderExamples = [
+// search bar example Desktop
+    const desktopPlaceholders = [
         "Search products or describe what you need...",
-        'Try: "black dress for a party"',
-        'Try: "red sneakers under ₹2000"',
-        'Try: "laptop for coding under ₹50000"',
-        'Try: "skincare products for dry skin"'
+        '"black dress for a party"',
+        '"red sneakers under ₹2000"',
+        '"laptop for coding under ₹50000"',
+        '"skincare products for dry skin"',
+        '"Headphones"',
+        '"Sunscreen"',
+        '"Galaxy S24"',
     ];
 
-    const [searchPlaceholder, setSearchPlaceholder] = useState(placeholderExamples[0]);
-
-    useEffect(()=>{
-        let index = 0;
-        const interval = setInterval(()=>{
-            index= (index+1) % placeholderExamples.length;
-            setSearchPlaceholder(placeholderExamples[index]);
-        },1000);
-
-        return ()=> clearInterval(interval);
-    }, []);
+// search bar example Mobile
+    const mobilePlaceholders = [
+        "Search or describe products...",
+        '"black party dress"',
+        '"red sneakers under ₹2k"',
+        '"laptop under ₹50k"',
+        '"skincare for dry skin"',
+        '"Headphones"',
+        '"Sunscreen"',
+        '"Galaxy S24"',
+    ];
+    
 
 
     return (
@@ -543,11 +620,31 @@ const Search = () => {
             <AnimatedBorderBox $isFocused={isFocused}>
                 <InnerSearchBox>
                     {/* left icon */}
-                    <AutoAwesomeIcon sx={{fontSize:20, color: '#85399c', display:{xs: 'none', md:'block'}}} />
+                    <AutoAwesomeIcon sx={{
+                                            fontSize:20, 
+                                            color: '#85399c', 
+                                            display:{xs: 'none', sm:'block',
+                                            md:'block'
+                                        }}} 
+                    />
+
+
+                    {!text && (
+                        <AnimatedPlaceholder key={placeholderIndex}>
+                            <Box sx={{ display: {xs: "none", sm:"block"}}}>
+                                {desktopPlaceholders [placeholderIndex]}
+                            </Box>
+
+                            <Box sx={{ display: {xs: 'block', sm: 'none'}}}>
+                                {mobilePlaceholders[placeholderIndex]}
+                            </Box>
+                            
+                        </AnimatedPlaceholder>
+                    )}
 
                     {/* input */}
                     <InputSearchBase 
-                        placeholder={searchPlaceholder} 
+                        placeholder=""
                         value={text}
                         onFocus={()=> setIsFocused(true)}
                         onChange={(e)=> setText(e.target.value)}
@@ -560,16 +657,16 @@ const Search = () => {
                     <IconButton
                         onClick={()=> handleHybridSearch()}
                         sx={{
-                            backgroundColor: {xs:'transparent',md:'#f3e8f8'},
+                            backgroundColor: '#f3e8f8',
                             color: '#85399c',
                             borderRadius: '6px',
                             padding: {xs:'6px 6px', md:'6px 12px'},
                             '&:hover': {backgroundColor: {xs:'#f3e8f8',md:'#ebd4f4'}}
                         }}
                     >
-                        <SearchIcon sx={{ fontSize:20, display: { xs: 'none', md: 'block' } }} />
+                        <SearchIcon sx={{ fontSize:20, display: { xs: 'none', sm:'block', md: 'block' } }} />
                     
-                        <Box sx={{ display: { xs: 'flex', md: 'none' }, position: 'relative', alignItems: 'center' }}>
+                        <Box sx={{ display: { xs: 'flex',sm:'none',  md: 'none' }, position: 'relative', alignItems: 'center' }}>
                             <SearchIcon sx={{ fontSize: 22 }} />
                             <AutoAwesomeIcon sx={{ fontSize: 11, position: 'absolute', top: -3, right: -4 }} />
                         </Box>

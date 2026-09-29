@@ -41,14 +41,29 @@ const extractSearchKeywords = async (userQuery) =>{
         - If user searches "saste aur acche smart watch" (Hindi written in English/Hinglish), you output: smartwatches, affordable fitness trackers, digital watches
         - If user searches "ghar ki safai ke liye machine" (Hinglish), you output: vacuum cleaners, cleaning robots, floor cleaners
         - If user searches "bhalo gaan shonar jinish" (Bengali/Banglish), you output: headphones, earphones, bluetooth speakers
-        - If user searches "lal ronger juto" (Banglish), you output: black shoes, black sneakers, black footwear
+        - If user searches "lal ronger juto" (Banglish), you output: red shoes, red sneakers, red footwear
         - If user searches "मुझे एक अच्छा स्मार्टफोन चाहिए" (Hindi Devanagari), you output: smartphones, mobile phones, cell phones
         - If user searches "শীতের জন্য গরম জামাকাপড়" (Bengali script), you output: winter jackets, sweaters, hoodies, thermal wear
         
         
         Strict Rules:
         1. Do NOT write any conversational text, explanations, or sentences.
-        2. Return ONLY a comma-separated list of English keywords.`;
+        2. Return ONLY a comma-separated list of English keywords.
+        
+
+        // Strictly return ONLY a valid JSON object in this format:
+        // {
+        //   "keywords": "string of 3-5 english keywords",
+        //   "color": "extracted color name in english, or null if no color is mentioned"
+        // }
+        
+        // Example:
+        // Query: "lal ronger juto"
+        // Output: {"keywords": "shoes, sneakers, athletic footwear", "color": "red"}
+        
+        // Query: "comfortable smartwatch"
+        // Output: {"keywords": "smartwatches, fitness trackers, digital watches", "color": null}
+        `;
 
         const response = await withRetry(() => 
             ai.models.generateContent({
@@ -60,6 +75,9 @@ const extractSearchKeywords = async (userQuery) =>{
         const optimizedkeywords = response.text.trim();
 
         return optimizedkeywords;
+
+        // const jsonText = response.text.replace(/```json/g, '').replace(/```/g, '').trim();
+        // return JSON.parse(jsonText);
 
     }catch(err){
         console.log(err);
