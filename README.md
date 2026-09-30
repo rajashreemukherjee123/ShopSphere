@@ -607,7 +607,7 @@ Example queries:
 * `saste aur acche smart watch`
 * `lal ronger juto`
 * `bhalo gaan shonar jinish`
-* `ঘরে পরিষ্কার করার মেশিন`
+* `ঘর পরিষ্কার করার মেশিন`
 * `office work er jonno bhalo device`
 
 ### ⚡ Two-Layer Search Experience
