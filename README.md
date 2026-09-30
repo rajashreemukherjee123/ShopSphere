@@ -1,4 +1,4 @@
-# 🛒 ShopSphere — Full-Stack E-Commerce Website
+<!-- # 🛒 ShopSphere — Full-Stack E-Commerce Website
 
 A full-stack MERN e-commerce web application built with **React.js, Node.js, Express.js, MongoDB, and Redux Toolkit**.
 
@@ -574,6 +574,340 @@ https://github.com/rajashreemukherjee123
 If you like this project, consider giving the repository a ⭐ on GitHub.
 
 ---
+
+## 📄 License
+
+This project is licensed under the MIT License. -->
+
+# 🛒 ShopSphere — AI-Powered Full-Stack E-Commerce Website
+
+A full-stack **MERN e-commerce application** built with **React.js, Node.js, Express.js, MongoDB, Redux Toolkit, and Google Gemini AI**.
+
+ShopSphere offers a complete shopping experience: secure authentication, dynamic categories and product sections, personalized cart and wishlist, Razorpay payments, and an **AI-powered semantic product search** that understands natural-language queries in English, Bengali, Hindi, and mixed/romanized languages.
+
+## 🌐 Live Demo
+
+**Live Website:** https://shopsphere-frontend-xi.vercel.app/
+
+**GitHub Repository:** https://github.com/rajashreemukherjee123/ShopSphere
+
+<!-- Add a demo GIF or screenshots here, e.g. ![Demo](./assets/demo.gif) -->
+
+---
+
+## ✨ Key Features
+
+### 🤖 AI-Powered Product Search
+
+Users can describe what they want instead of guessing exact product names. Search is powered by **Google Gemini AI** and **MongoDB Atlas Vector Search**.
+
+Example queries:
+
+* `comfortable shoes for running`
+* `saste aur acche smart watch`
+* `lal ronger juto`
+* `bhalo gaan shonar jinish`
+* `ঘরে পরিষ্কার করার মেশিন`
+* `office work er jonno bhalo device`
+
+### ⚡ Two-Layer Search Experience
+
+| Layer | Trigger | How it works |
+|---|---|---|
+| **Instant Matches** | While typing | Client-side filtering on products already loaded in Redux, with no API call |
+| **AI Deep Search** | Press Enter / click search | Gemini + vector search via the backend, results on a dedicated page |
+
+### 🎨 Search UI & Animations
+
+* Animated gradient border that sweeps around the search box on focus
+* Slide-up rotating placeholder with example queries
+* Separate, shorter placeholders for mobile
+* AI sparkle icon on the search bar and button
+* "Try searching naturally" suggestions dropdown
+* Skeleton loading on the search results page
+* Animations built with MUI `styled` + CSS `keyframes`
+
+### 🔍 How AI Search Works
+
+```text
+User Search Query
+       ↓
+Gemini Flash Lite  →  intent / keyword extraction
+       ↓
+Optimized English Product Keywords
+       ↓
+gemini-embedding-001  →  query vector
+       ↓
+MongoDB Atlas Vector Search
+       ↓
+Similarity Score Filtering
+       ↓
+Relevant Products
+```
+
+**1. Query understanding**
+
+Gemini converts the user's query (any supported language) into English product keywords.
+
+```text
+User:  "lal ronger juto"
+AI:    red shoes, red sneakers, red footwear
+```
+
+**2. Product embeddings**
+
+Each product gets a vector embedding built from its category, name, description, and color, stored in MongoDB alongside the product:
+
+```javascript
+const textToEmbed = `Category: ${item.category}. Name: ${item.title.longTitle}. Description: ${item.description}. Color: ${item.color || 'N/A'}`;
+const vector = await generateEmbedding(textToEmbed);
+```
+
+**3. Vector search and filtering**
+
+```javascript
+{
+  "$vectorSearch": {
+    "index": "vector_index",
+    "path": "embedding",
+    queryVector,
+    "numCandidates": 50,
+    "limit": 10
+  }
+}
+```
+
+Results are filtered in two steps:
+
+1. Keep only products with similarity score **≥ 0.79**
+2. Keep only products scoring within **90% of the top result's score**
+
+This removes loosely related products.
+
+### 🛡️ Resilience: Retry & Fallback
+
+* **Retry with exponential backoff** for temporary Gemini errors (`429 Too Many Requests`, `503 Service Unavailable`)
+* **Fallback search:** if embedding generation still fails, the backend falls back to a basic case-insensitive regex keyword search on product title and category, so search keeps working while the AI service is down
+
+---
+
+## 🔐 Authentication & Security
+
+* User registration and login
+* JWT authentication with protected backend routes
+* Password hashing with `bcryptjs`
+* Persistent login and automatic session-expiry handling
+* Axios request/response interceptors
+
+## 🛍️ Product Browsing
+
+* Product listing and detail pages (image, title, price, discount, description)
+* **Dynamic category pages** through one reusable page: `/category/fashion`, `/category/electronics`, `/category/appliance`, `/category/mobile`, `/category/beauty`
+* **Dynamic home sections** (Deal of the Day, Trending Offers, Top Selection, Discounts for You, Recommended Items, Suggested for You, Season's Top Picks) with **View All** section pages
+* Carousels and countdown timers for deals
+* Skeleton loading for home sections, category pages, section pages, wishlist, and search results
+
+## 🛒 Shopping Cart & ❤️ Wishlist
+
+* Add / remove products, increase / decrease quantity
+* Move products between cart and wishlist
+* User-specific, persistent cart and wishlist
+
+## 💳 Payment Integration
+
+* Razorpay integration (Test Mode) with a checkout flow from the cart
+
+## 📱 Responsive Design
+
+* Material UI and responsive grids, carousels, and mobile-friendly navigation
+
+---
+
+## 🧰 Tech Stack
+
+**Frontend:** React.js, Vite, Redux Toolkit, React Router DOM, Material UI, Axios, React Multi Carousel, React Countdown, React Toastify
+
+**Backend:** Node.js, Express.js, MongoDB, Mongoose, JWT, bcryptjs, REST APIs
+
+**AI & Search:** Google Gemini AI (`@google/genai`), Gemini Flash Lite, `gemini-embedding-001`, MongoDB Atlas Vector Search
+
+**Payment:** Razorpay
+
+**Deployment:** Vercel (frontend), Render (backend), MongoDB Atlas (database and vector search)
+
+---
+
+## 🏗️ Architecture
+
+```text
+   React + Vite (Vercel)
+           │  REST API
+           ▼
+   Node.js + Express (Render)
+      │               │
+      ▼               ▼
+ MongoDB Atlas    Google Gemini API
+ (data + vectors)  (keywords + embeddings)
+```
+
+### Redux Toolkit Structure
+
+```text
+redux/
+├── slices/
+│   ├── productSlice.js
+│   ├── cartSlice.js
+│   ├── wishListSlice.js
+│   └── userSlice.js
+├── axiosInstance.js
+└── store.js
+```
+
+Redux manages products, AI search results, cart, wishlist, user authentication, and loading/error states.
+
+### AI Search API
+
+```http
+POST /products/ai-search
+```
+
+```json
+{ "query": "comfortable running shoes for men" }
+```
+
+---
+
+## 📁 Project Structure
+
+```text
+ShopSphere/
+├── FrontEnd_E-commerce_website_v002/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── redux/
+│   │   └── App.jsx
+│   └── package.json
+│
+├── BackEnd_E-commerce_website_v002/
+│   ├── controller/
+│   ├── model/
+│   ├── routes/
+│   ├── middleware/
+│   ├── utils/
+│   │   └── geminiService.js
+│   ├── constants/
+│   │   └── data.js
+│   ├── defaultData.js
+│   └── server.js
+│
+└── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/rajashreemukherjee123/ShopSphere.git
+cd ShopSphere
+```
+
+### 2. Backend setup
+
+```bash
+cd BackEnd_E-commerce_website_v002
+npm install
+```
+
+Create a `.env` file:
+
+```env
+PORT=3000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+GEMINI_API_KEY=your_gemini_api_key
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
+```
+
+Start the server:
+
+```bash
+npm run dev
+```
+
+### 3. Create the Atlas Vector Search index
+
+`defaultData.js` seeds the products and generates an embedding for each one when the server syncs default data. Then, in **MongoDB Atlas → Search → Create Search Index → Atlas Vector Search**, create an index named `vector_index` on the `products` collection:
+
+```json
+{
+  "fields": [
+    {
+      "type": "vector",
+      "path": "embedding",
+      "numDimensions": 3072,
+      "similarity": "cosine"
+    }
+  ]
+}
+```
+
+> `numDimensions` must match the output size of `gemini-embedding-001` (3072 by default).
+
+### 4. Frontend setup
+
+```bash
+cd FrontEnd_E-commerce_website_v002
+npm install
+```
+
+Create a `.env` file:
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+```bash
+npm run dev
+```
+
+> Never commit `.env` files or API keys to GitHub.
+
+---
+
+## 🌐 Deployment
+
+* **Frontend:** Vercel
+* **Backend:** Render
+* **Database:** MongoDB Atlas
+
+---
+
+## 🔮 Future Improvements
+
+* AI-powered product recommendations based on shopping history
+* Conversational shopping assistant
+* AI-based product comparison
+* Semantic filtering by price, category, color, and features
+* Smarter fallback search using the AI-extracted keywords
+
+---
+
+## 👩‍💻 Author
+
+**Rajashree Mukherjee** — MERN Stack Developer
+
+* GitHub: https://github.com/rajashreemukherjee123
+* LinkedIn: https://linkedin.com/in/rajashree-mukherjee-b35093216
+
+---
+
+## ⭐ Support
+
+If you like this project, consider giving the repository a ⭐ on GitHub.
 
 ## 📄 License
 
