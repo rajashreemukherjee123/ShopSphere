@@ -43,6 +43,7 @@ const products = [
       "This non-stick sandwich toaster .easy to use and very handy. Directly hold over flame to make tasty toasts and toasted sandwiches. Specially designed by keeping your needs in mind, the sandwich maker makes whatever youre doing simpler, smarter and better",
     discount: "From 99+5% Off",
     tagline: "Pestige, Nova & more",
+    sections: [],
   },
   {
     id: "product3",
@@ -89,6 +90,8 @@ const products = [
       "The Molife Sense 500, a brilliant smartwatch with a beautiful large display. Say hello to the infinity 1.7-inch display with 2.5D curved edges. Thanks to seamless Bluetooth 5.0 connectivity, you wont have to keep waiting. Bring a change to your outfit every day with changeable straps. A splash of color every day keeps the boredom away.",
     discount: "Grab Now",
     tagline: "Best Seller",
+    color: "black",
+    sections: [],
   },
   {
     id: "product5",
@@ -110,6 +113,10 @@ const products = [
       "The Nova Professional NHP 8220 Hair Dryer is a 1800-watt, corded electric styling tool designed for fast drying and salon-like results at home. Operates at 1800 Watts with an AC motor designed for fast styling and consistent temperature control. Features 3 temperature/heat settings and 3-speed settings (some listings indicate 2 speed/heat).",
     discount: "From ₹499",
     tagline: "Kubra, Nova & more",
+    color: 'black',
+    sections: [
+    "Top-Deals-On-Accessories",
+    ],
   },
   {
     id: "product6",
@@ -157,6 +164,7 @@ const products = [
       "Let music brighten up your mood anytime, anywhere with the boAt 235v2 Fast Charging Bluetooth Headset. This Bluetooth headset features a Call Vibration Alert, a Fast Charging Technology, and Easy Access Controls to listen to and manage your favorite music with ease.",
     discount: "Minimum 50% Off",
     tagline: "Grab Now!",
+    color: "black",
     sections: [
     "Top-Deals-On-Accessories",
     "Discounts-for-you",
@@ -183,6 +191,7 @@ const products = [
       "A16 Bionic chip, 48MP camera, Dynamic Island and all-day battery life.",
     discount: "Extra ₹3000 off on cards",
     tagline: "Premium smartphone experience",
+    color: "black",
     sections: [
     "deal-of-the-day",
     ],
@@ -203,6 +212,7 @@ const products = [
       "AI features, powerful performance and stunning AMOLED display.",
     discount: "Bank offer up to ₹4000",
     tagline: "Galaxy AI is here",
+    color: "black",
     sections: [
     "Top Selection",
     ],
@@ -243,6 +253,8 @@ const products = [
       "Elegant floral print dress suitable for casual and party wear.",
     discount: "Special price today",
     tagline: "Style meets elegance",
+    color: "black",
+    sections: [],
   },
   {
     id: "Product12",
@@ -260,7 +272,7 @@ const products = [
       "Soft cotton fabric, regular fit and comfortable for daily wear.",
     discount: "Buy 2 get 1 free",
     tagline: "Everyday comfort",
-    
+    sections: [],
   },
   {
     id: "Product13",
@@ -278,6 +290,8 @@ const products = [
       "Comfortable cushioning and breathable design for daily running.",
     discount: "Flat ₹500 off",
     tagline: "Run in comfort",
+    color: "red",
+    sections: [],
   },
   {
     id: "Product14",
@@ -294,9 +308,8 @@ const products = [
     description: "Deep bass, long battery life and comfortable ear cushions.",
     discount: "Extra 10% with coupon",
     tagline: "Immersive sound",
-    sections: [
-    "Top-Deals-On-Accessories",
-    ],
+    color: "black",
+    sections: [],
   },
   {
     id: "Product15",
@@ -314,6 +327,7 @@ const products = [
       "Spacious backpack with laptop compartment and water-resistant material.",
     discount: "Limited stock",
     tagline: "Carry everything with ease",
+    color: "black",
     sections: [
     "Top-Deals-On-Accessories",
     "Season's-top-picks",
@@ -335,8 +349,10 @@ const products = [
     description: "Snapdragon 8 Gen 3, 120Hz AMOLED display and fast charging.",
     discount: "Bank offer available",
     tagline: "Flagship killer",
+    color: "Flowy Emerald",
     sections: [
     "deal-of-the-day",
+    "Top Selection",
     ],
   },
   {
@@ -354,9 +370,8 @@ const products = [
     description: "Best camera experience with pure Android and AI features.",
     discount: "Exchange bonus",
     tagline: "Made by Google",
-    sections: [
-    "Top Selection",
-    ],
+    color: "black",
+    sections: [],
   },
   {
     id: "Product18",
@@ -392,9 +407,8 @@ const products = [
     description: "Powerful sound, waterproof design and long battery life.",
     discount: "Extra coupon available",
     tagline: "Party anywhere",
-    sections: [
-    "Top-Deals-On-Accessories",
-    ],
+    color: "black",
+    sections: [],
   },
   {
     id: "Product20",
@@ -490,6 +504,7 @@ const products = [
     description: "Soft fleece hoodie for winter and casual wear.",
     discount: "Combo offer available",
     tagline: "Stay cozy",
+    color: "white",
     sections: [
     "Recommended-items",
     "Season's-top-picks"
@@ -510,6 +525,7 @@ const products = [
     description: "Comfortable sneakers for everyday use.",
     discount: "Special festival price",
     tagline: "Walk in style",
+    color: "gray",
     sections: [
     "Recommended-items",
     "Season's-top-picks",
@@ -550,6 +566,7 @@ const products = [
   description: "Long-lasting glossy nail polish with a smooth and vibrant finish.",
   discount: "Buy 2 and get extra 10% off",
   tagline: "Beautiful nails, beautiful you",
+  color: "pink",
   sections: [
     "Recommended-items",
     "Suggesting-items",
@@ -574,6 +591,7 @@ const products = [
     tagline: "Bold color",
     sections: [
     "Suggesting-items",
+    "Top-Deals-On-Accessories",
     ],
   },
   {
@@ -630,7 +648,8 @@ const products = [
     discount: "Extra ₹200 off",
     tagline: "Efficient cooking",
     sections: [
-    "Recommended-items"
+    "Recommended-items",
+    "Top-Deals-On-Accessories",
     ],
   },
   {
@@ -664,6 +683,7 @@ const products = [
     description: "Unique transparent design with smooth performance.",
     discount: "Exchange offer available",
     tagline: "Designed differently",
+    color: "white",
     sections: [
     "Trending-Offers",
     ],
@@ -683,6 +703,7 @@ const products = [
     description: "High refresh rate display and flagship level speed.",
     discount: "Bank cashback",
     tagline: "Speed unleashed",
+    color: "IceSense Blue",
     sections: [
     "Trending-Offers",
     ],
@@ -702,6 +723,7 @@ const products = [
     description: "108MP camera, AMOLED display and long battery life.",
     discount: "Special launch price",
     tagline: "Value for money",
+    color: "black",
     sections: [
     "Trending-Offers",
     ],
@@ -721,6 +743,7 @@ const products = [
     description: "Comfortable stretch denim with a modern fit.",
     discount: "Flat 30% off",
     tagline: "Fit that flatters",
+    color: "Blue",
     sections: [
       "deal-of-the-day"
     ],
@@ -740,6 +763,8 @@ const products = [
     description: "Powerful gaming smartphone with Snapdragon processor.",
     discount: "Bank offer available",
     tagline: "Built for gamers",
+    color: "orange",
+    sections: [],
   },
   {
     id: "Product38",
@@ -756,6 +781,8 @@ const products = [
     description: "Curved pOLED display and clean Android experience.",
     discount: "Exchange bonus",
     tagline: "Pure Android feel",
+    color: "green",
+    sections: [],
   },
   {
     id: "Product39",
@@ -772,6 +799,7 @@ const products = [
     description: "Excellent portrait camera and sleek design.",
     discount: "Flat ₹2000 off",
     tagline: "Capture every moment",
+    color: "purple",
     sections: [
     "Trending-Offers",
     ],
@@ -788,6 +816,7 @@ const products = [
     description: "Flagship-level performance at a value price.",
     discount: "Special launch offer",
     tagline: "Performance beast",
+    color: "black",
     sections: [
     "Trending-Offers",
     ],
@@ -807,6 +836,7 @@ const products = [
     description: "Leica camera system with premium flagship features.",
     discount: "Card discount available",
     tagline: "Flagship photography",
+    color: "silver",
     sections: [
     "Top Selection",
     "Top-Deals-On-Accessories"
@@ -827,6 +857,7 @@ const products = [
     description: "Mechanical switches with customizable RGB lighting.",
     discount: "Extra 10% off",
     tagline: "Game in style",
+    color: "black",
     sections: [
     "Trending-Offers",
     ],
@@ -846,6 +877,7 @@ const products = [
     description: "Comfortable ergonomic design with adjustable DPI.",
     discount: "Flat ₹200 off",
     tagline: "Precision control",
+    color: "black",
     sections: [
     "Trending-Offers",
     "Top-Deals-On-Accessories",
@@ -864,6 +896,7 @@ const products = [
     description: "Crystal clear video for meetings and streaming.",
     discount: "Extra coupon available",
     tagline: "Look professional",
+    color: "black",
     sections: [
     "Top-Deals-On-Accessories"
     ],
@@ -883,9 +916,9 @@ const products = [
     description: "Active noise cancellation and long battery life.",
     discount: "Launch offer",
     tagline: "Silence the world",
+    color: "white",
     sections: [
     "Trending-Offers",
-    "Top-Deals-On-Accessories",
     "Discounts-for-you"
     ],
     
@@ -906,6 +939,7 @@ const products = [
     description: "Lightweight vacuum cleaner for home and car.",
     discount: "Extra 5% off",
     tagline: "Easy cleaning",
+    sections: [],
   },
   {
     id: "Product48",
@@ -960,6 +994,9 @@ const products = [
     description: "Smooth ironing with continuous steam output.",
     discount: "Flat ₹100 off",
     tagline: "Wrinkle-free clothes",
+    sections: [
+    "deal-of-the-day",
+    ],
   },
   {
     id: "Product51",
@@ -976,9 +1013,7 @@ const products = [
     description: "Brew fresh coffee with one-touch operation.",
     discount: "Limited period offer",
     tagline: "Cafe at home",
-    sections: [
-    "deal-of-the-day",
-    ],
+    sections: [],
   },
   {
     id: "Product52",
@@ -992,6 +1027,7 @@ const products = [
     description: "Premium cotton polo t-shirt for casual wear.",
     discount: "Buy 2 save more",
     tagline: "Classic everyday style",
+    color: "black",
     sections: [
     "Suggesting-items"
     ],
@@ -1024,6 +1060,8 @@ const products = [
     description: "Soft and stretchable joggers for all-day comfort.",
     discount: "Flat ₹200 off",
     tagline: "Move freely",
+    color: "black",
+    sections: [],
   },
   {
     id: "Product55",
@@ -1037,6 +1075,7 @@ const products = [
     description: "Stylish analog watch with a premium finish.",
     discount: "Festival offer",
     tagline: "Timeless style",
+    color: "silver",
     sections: [
     "Discounts-for-you",
     "Season's-top-picks",
@@ -1055,6 +1094,7 @@ const products = [
     description: "Spacious and stylish handbag for daily use.",
     discount: "Extra 10% with coupon",
     tagline: "Carry with confidence",
+    color: "brown",
     sections: [
     "Suggesting-items",
     "deal-of-the-day"
@@ -1096,6 +1136,7 @@ const products = [
     description: "Helps improve skin texture while you sleep.",
     discount: "Flat ₹150 off",
     tagline: "Wake up glowing",
+    sections: [],
   },
   {
     id: "Product59",
@@ -1112,6 +1153,7 @@ const products = [
     description: "Deep cleans pores and removes excess oil.",
     discount: "Extra 15% off",
     tagline: "Detox your skin",
+    sections: [],
   },
   {
     id: "Product60",

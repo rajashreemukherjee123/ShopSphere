@@ -1,6 +1,7 @@
 import { Box, styled } from '@mui/material'
 import React from 'react'
 import Slide from './Slide'
+import furnitureBanner1 from '../../assets/furnture_banner1.jpg'
 
 
 const Component = styled(Box)`
@@ -27,8 +28,7 @@ const RightComponent = styled(Box)(({ theme })=> ({
 }));
 
 const MidSlide = ({title, section, timer}) => {
-    const adURL = 'https://rukminim1.flixcart.com/flap/464/708/image/633789f7def60050.jpg?q=70';
-
+    
   return (
     <Component>
         <LeftComponent>
@@ -36,7 +36,7 @@ const MidSlide = ({title, section, timer}) => {
         </LeftComponent>
         
         <RightComponent>
-            <img src={adURL} alt='ad' style={{width: 217}} />
+            <img src={furnitureBanner1} alt='ad' style={{width: 217}} />
         </RightComponent>
     </Component>
   )

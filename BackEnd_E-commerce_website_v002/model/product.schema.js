@@ -16,6 +16,7 @@ const productSchema = new mongoose.Schema({
     discount: String,
     tagline: String,
     sections: [String],
+    color: String,
     
     embedding: [Number]
 

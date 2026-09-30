@@ -10,7 +10,7 @@ const defaultData = async()=> {
     try{
         for(const item of products) {
 
-            const textToEmbed = `Category: ${item.category}. Name: ${item.title.longTitle}. Description: ${item.description}`;
+            const textToEmbed = `Category: ${item.category}. Name: ${item.title.longTitle}. Description: ${item.description}. Color: ${item.color || 'N/A'} `;
             const vector = await generateEmbedding(textToEmbed);
 
             await product.updateOne(
